@@ -6,11 +6,19 @@
         public $idEntreprise;
         public $nom;
 
+        public function __construct($id = "",$idEntreprise = "",$nom= "") {
+            parent::__construct();
+            $this->idFournisseur= $id;
+            $this->idEntreprise = $idEntreprise;
+            $this->$nom = $nom;
+        }
+
         public function insert() {
             $data = array(
                 'idFournisseur' => $this->idFournisseur,
                 'idEntreprise' => $this->idEntreprise,
-                'nom' => nom
+                'nom' => $this->$nom,
+                'numCompte' => '0'
             );            
             $this->db->insert('fournisseur', $data);
         }
@@ -24,9 +32,9 @@
             $this->db->update('fournisseur', $data);
         }
 
-        public function delete() {
+        public function delete($id) {
             $data = array(
-                'idFournisseur' => $this->idFournisseur
+                'idFournisseur' => $id
             );            
             $this->db->delete('fournisseur', $data);
         }
