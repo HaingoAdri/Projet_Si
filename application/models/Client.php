@@ -1,6 +1,35 @@
 <?php 
     if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
     class Client extends CI_Model {
+        public $idClient;
+        public $idEntreprise;
+        public $nom;
+
+        public function insert() {
+            $data = array(
+                'idClient' => $this->idClient,
+                'idEntreprise' => $this->idEntreprise,
+                'nom' => nom
+            );            
+            $this->db->insert('client', $data);
+        }
+
+        public function update() {
+            $data = array(
+                'idClient' => $this->idClient,
+                'idEntreprise' => $this->idEntreprise,
+                'nom' => nom
+            );            
+            $this->db->update('client', $data);
+        }
+
+        public function delete() {
+            $data = array(
+                'idClient' => $this->idClient
+            );            
+            $this->db->delete('client', $data);
+        }
 
         public function checkClientExist($mail, $pswd) {
             $requette = "select * from client where mail='%s' and password='%s'";
