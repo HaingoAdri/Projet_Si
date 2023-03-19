@@ -1,3 +1,0 @@
-# Projet_Si
-creation d'un systeme d'information
-journal,exercice,compte,etc.....
