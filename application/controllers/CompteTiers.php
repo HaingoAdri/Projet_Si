@@ -12,22 +12,42 @@
 
         public function ajout(){
             $this->load->model('Compte');
+            $this->load->model('CompteClientFournisseur');
             $idEntreprise = $_SESSION['id'];
             $liste['liste'] = $this->Compte->compteClientFournisseur($idEntreprise);
-            var_dump( $liste['liste']);
-            // $this->load->view('pages/CompteTiers', $liste);
+            // var_dump( $liste['liste']);
+            $liste['planTiers'] = $this->CompteClientFournisseur->listeCompteTiers($idEntreprise);
+            $this->load->view('pages/CompteTiers', $liste);
         }
 
-        public function ajoutNouveauClient() {
-            $this->load->model('Compte');
+        public function ajoutNouveauCompteTiers() {
+            $this->load->model('CompteClientFournisseur');
             $idEntreprise = $_SESSION['id'];
+            $idType = $this->input->post('idType');
             $numero = $this->input->post('numero');
             $intitule = $this->input->post('intitule');
-            $compte = new Compte("0", $idEntreprise, $numero, $intitule);
+            $compte = new CompteClientFournisseur("0", $idEntreprise, $idType, $numero, $intitule);
             $compte->insert();
-            redirect("CompteGeneral/ajout");
+            redirect("CompteTiers/ajout");
         }
 
+        public function supprimer($id){
+             $this->load->model('CompteClientFournisseur');
+            $CompteClientFournisseur = new CompteClientFournisseur($id = $id, $idEntreprise = $_SESSION['id']);
+            $CompteClientFournisseur->update(1);
+            redirect("CompteTiers/ajout");
+        }
+
+        public function restaurer($id){
+             $this->load->model('CompteClientFournisseur');
+            $CompteClientFournisseur = new CompteClientFournisseur($id = $id, $idEntreprise = $_SESSION['id']);
+            $CompteClientFournisseur->update(0);
+            redirect("CompteTiers/ajout");
+        }
+
+        public function traitementData(){
+            $type = $this->input->post('idType');
+        }
        
 
         

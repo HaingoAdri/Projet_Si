@@ -77,6 +77,7 @@ create table Devise(
     foreign key (idEntreprise) references Entreprise(id),
     foreign key (idListeDevise) references ListeDevise(id)
 );
+ALTER TABLE devise add column exist int default 0;
 
 create table TauxDevise(
     id SERIAL primary key,
@@ -134,6 +135,16 @@ create table Fournisseur(
     foreign key (idEntreprise) references Entreprise(id)    
 );
 
+create table Tiers(
+    id SERIAL primary key,
+    idEntreprise int,
+    idCompte int,
+    numero varchar(100),
+    intitule varchar(200),
+    exist int default 0,
+    foreign key (idEntreprise) references Entreprise(id)    
+);
+
 
 create table TypeJournal(
     id SERIAL primary key,
@@ -144,17 +155,22 @@ create table Journaux(
     id SERIAL primary key,
     idEntreprise int,
     date Date,
-    PCE varchar(200),
-    CACT varchar(200),
-    libelle varchar(150),
-    devise int,
+    pcg int,
+    compte int,
+    num int,
+    libelle varchar(200) not null,
+    cause varchar(200),
+    montant double precision not null,
     taux double precision,
+    devise int,
     debit double precision,
     credit double precision,
     foreign key (idEntreprise) references Entreprise(id)    
 );
 
-ALTER TABLE devise add column exist int default 0;
+create or replace view listeJournaux as
+    select j.id,date, c.intitule,compte,num,libelle,cause,montant,  taux, d.devise, debit , credit from Journaux  as  j  join code as c on j.pcg = c.id join listedevise as d on j.devise = d.id order by j.id asc;
+
 
 create view listeAdresse as
     select a.id, a.identreprise, date, idtypeadresse, type, valeur, exist from adresse a join typeadresse t on a.idtypeadresse=t.id;
@@ -167,6 +183,58 @@ create or replace view listeDeviseEntreprise as
 
 create view listeTauxDevise as
      select t.id, t.identreprise, t.iddevise, devise, taux, date from tauxDevise t join listedeviseentreprise l on t.iddevise=l.id;
+
+create or replace view listeCompteTiers as
+        select t.id, t.identreprise, t.idcompte, c.intitule compte, t.numero, t.intitule, t.exist from tiers t join compte c on t.idcompte=c.id where c.exist=0;
+
+
+
+--------- SEQUENCE && FUNCTION
+
+-- Client
+CREATE SEQUENCE SeqClient
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 9999;
+
+Create function getsequenceClient()
+returns int
+language plpgsql
+as 
+$$
+declare 
+    idClient integer;
+begin
+    select nextVal('SeqClient') into idClient from SeqClient;
+
+    return idClient;
+end;
+$$;
+
+-- Fournisseur
+CREATE SEQUENCE SeqFournisseur
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 9999;
+
+Create function getsequenceFournisseur()
+returns int
+language plpgsql
+as 
+$$
+declare 
+    idFournisseur integer;
+begin
+    select nextVal('SeqFournisseur') into idFournisseur from SeqFournisseur;
+
+    return idFournisseur;
+end;
+$$;
+
+
+
 
 
 --insert

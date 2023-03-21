@@ -109,7 +109,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Journal</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="<?php echo site_url(); ?>CodeJournal/ajout">Code</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="<?php echo site_url(); ?>Devises/ajout">Affichage Journal</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="<?php echo site_url(); ?>Journal/index">Affichage Journal</a></li>
                         </ul>
                     </li>
 
@@ -118,6 +118,13 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="<?php echo site_url(); ?>CompteGeneral/ajout">Compte General</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="<?php echo site_url(); ?>CompteTiers/ajout">Compte Tiers</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Grand Livre</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href="<?php echo site_url(); ?>CodeGrandLivre/index">Affichage</a></li>
                         </ul>
                     </li>
                     
