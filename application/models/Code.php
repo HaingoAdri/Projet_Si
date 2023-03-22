@@ -51,6 +51,32 @@
             }
             return $liste2;
         }
+
+        public function updateCode() {
+            $data = array(
+                'code' => $this->code,
+                'intitule' => $this->intitule
+            );  
+            $this->db->where('id', $this->id); 
+            $this->db->update('code', $data); 
+            
+        }
+
+        public function donneesUnCompte($id) {
+            $this->db->where('id', $id); 
+            $query = $this->db->get('code'); 
+            $code = new Code();
+            $liste = [];
+            if ($query->num_rows() > 0) {
+                $liste = $query->result();
+            }
+            if(count($liste) == 1) {
+                $code = new Code("".$liste[0]->id, "".$liste[0]->identreprise, "".$liste[0]->code, "".$liste[0]->intitule);     
+                $code->exist = $liste[0]->exist;
+            }
+
+            return $code;
+        }
         
 
 

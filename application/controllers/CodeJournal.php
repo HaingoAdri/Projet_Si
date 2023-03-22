@@ -41,6 +41,23 @@
             redirect("CodeJournal/ajout");
         }
 
+        public function Modifier($id){
+            $this->load->model('Code');
+            $code['code'] = $this->Code->donneesUnCompte($id);
+            $this->load->view('pages/ModifierCodeJournal', $code);
+        }
+
+        public function ModifierUnCode() {
+            $this->load->model('Code');
+            $idEntreprise = $_SESSION['id'];
+            $id = $this->input->post('id');
+            $code = $this->input->post('code');
+            $intitule = $this->input->post('intitule');
+            $code = new Code( $id, $idEntreprise, $code, $intitule);
+            $code->updateCode();
+            redirect("CodeJournal/ajout");
+        }
+
         
 
        

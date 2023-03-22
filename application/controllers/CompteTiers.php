@@ -32,14 +32,14 @@
         }
 
         public function supprimer($id){
-             $this->load->model('CompteClientFournisseur');
+            $this->load->model('CompteClientFournisseur');
             $CompteClientFournisseur = new CompteClientFournisseur($id = $id, $idEntreprise = $_SESSION['id']);
             $CompteClientFournisseur->update(1);
             redirect("CompteTiers/ajout");
         }
 
         public function restaurer($id){
-             $this->load->model('CompteClientFournisseur');
+            $this->load->model('CompteClientFournisseur');
             $CompteClientFournisseur = new CompteClientFournisseur($id = $id, $idEntreprise = $_SESSION['id']);
             $CompteClientFournisseur->update(0);
             redirect("CompteTiers/ajout");
@@ -47,6 +47,24 @@
 
         public function traitementData(){
             $type = $this->input->post('idType');
+        }
+
+        public function modifier($id){
+            $this->load->model('CompteClientFournisseur');
+            $compteT['compteT'] = $this->CompteClientFournisseur->donneesUnCompte($id);
+            // var_dump($compteT['compteT'] );
+            $this->load->view('pages/ModifierCompteTiers', $compteT);
+        }
+
+        public function ModifierUnCompte() {
+            $this->load->model('CompteClientFournisseur');
+            $idEntreprise = $_SESSION['id'];
+            $id = $this->input->post('id');
+            $numero = $this->input->post('numero');
+            $intitule = $this->input->post('intitule');
+            $compte = new CompteClientFournisseur( $id, $idEntreprise, "0", $numero, $intitule);
+            $compte->updateTiers();
+            redirect("CompteTiers/ajout");
         }
        
 

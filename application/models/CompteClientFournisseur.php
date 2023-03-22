@@ -48,6 +48,15 @@
             $this->db->insert('tiers', $data);
         }
 
+        public function updateTiers() {
+            $data = array(
+                'numero' => $this->numero,
+                'intitule' => $this->intitule
+            );            
+            $this->db->where('id', $this->id); 
+            $this->db->update('tiers', $data); 
+        }
+
         public function update($valeur) {
             $data = array(
                 'exist' => $valeur
@@ -75,6 +84,22 @@
                 }
             }
             return $liste2;
+        }
+
+        public function donneesUnCompte($id) {
+            $this->db->where('id', $id); 
+            $query = $this->db->get('tiers'); 
+            $compte = new CompteClientFournisseur();
+            $liste = [];
+            if ($query->num_rows() > 0) {
+                $liste = $query->result();
+            }
+            if(count($liste) == 1) {
+                $compte = new CompteClientFournisseur("".$liste[0]->id, "".$liste[0]->identreprise,  "".$liste[0]->idcompte, "".$liste[0]->numero, "".$liste[0]->intitule);     
+                $compte->exist = $liste[0]->exist;
+            }
+
+            return $compte;
         }
 
 

@@ -53,6 +53,7 @@
                                         <th class="serial">Type</th>
                                         <th>Numero</th>
                                         <th>Intitule du compte</th>
+                                        <th></th>
                                         <th>Exist</th>
                                     </tr>
                                 </thead>
@@ -62,6 +63,7 @@
                                         <td class="serial"><?php echo $planTiers[$i]->compte ?></td>
                                         <td><?php echo $planTiers[$i]->numero; ?></td>
                                         <td><?php echo $planTiers[$i]->intitule; ?></td>
+                                        <td><a href="<?php echo site_url(); ?>CompteTiers/modifier/<?php echo $planTiers[$i]->id; ?>"><span class="badge badge-primary">Modifier</span></a></td>
                                         <?php if(($planTiers[$i]->exist)=="0") { ?>
                                         <td><a href="<?php echo site_url(); ?>CompteTiers/supprimer/<?php echo $planTiers[$i]->id; ?>"><span class="badge badge-pending">Supprimer</span></a></td>
                                         <?php } else { ?>

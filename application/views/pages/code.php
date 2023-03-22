@@ -56,6 +56,7 @@
                                         <th class="serial">#</th>
                                         <th>Code</th>
                                         <th>Intitule du code</th>
+                                        <th></th>
                                         <th>Exist</th>
                                     </tr>
                                 </thead>
@@ -65,31 +66,12 @@
                                         <td class="serial"><?php echo $i+1; ?>.</td>
                                         <td><?php echo $liste[$i]->code; ?></td>
                                         <td><?php echo $liste[$i]->intitule; ?></td>
+                                        <td><a href="<?php echo site_url(); ?>CodeJournal/Modifier/<?php echo $liste[$i]->id; ?>"><span class="badge badge-primary">Modifier</span></a></td>
                                         <?php if(($liste[$i]->exist)=="0") { ?>
                                         <td><a href="<?php echo site_url(); ?>CodeJournal/supprimer/<?php echo $liste[$i]->id; ?>"><span class="badge badge-pending">Supprimer</span></a></td>
                                         <?php } else { ?>
                                         <td><a href="<?php echo site_url(); ?>CodeJournal/restaurer/<?php echo $liste[$i]->id;; ?>"><span class="badge  badge-complete">Restaurer</span></a></td>
                                         <?php } ?>
-                                        <!-- <tr>
-                                        <td class="serial"><?php echo $i+1; ?>.</td>
-                                        <td><?php echo $liste[$i]->code; ?></td>
-                                        <td><?php echo $liste[$i]->intitule; ?></td>
-                                            <td>
-                                                <form method="post" action="<?php echo base_url('code/modif'); ?>">
-                                                    <input type="hidden" name="id_c" value="<?php echo $liste[$i]->id; ?>">
-                                                    <div class="form-group">
-                                                        <input type="text" name="name_code"  placeholder="Inserer nom code journaux" class="form-control" required>
-                                                    </div>
-                                                    <button type="submit"  class="btn btn-info btn-sm">Modifier</button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <form method="post" action="<?php echo base_url('code/suppr'); ?>">
-                                                    <input type="hidden" name="id" value="<?php echo $liste[$i]->id; ?>">
-                                                    <button type="submit"  class="btn btn-danger btn-sm">Supprimer</button>
-                                                </form>
-                                            </td>
-                                            </tr> -->
                                     </tr>
                                     <?php } ?>
                                 </tbody>
