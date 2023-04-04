@@ -79,8 +79,12 @@
                             <div class="form-actions form-group">
                                 <button type="submit" class="btn btn-secondary btn-sm">Ajout</button>
                             </div>
+                            
                     </div>
                  </form>
+              <div class="form-actions form-group">
+                <input type="file" name="file">
+              </div>
               </div>
               <div class="card">
               <div class="card-header">Voir Journal</div>

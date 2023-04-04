@@ -49,6 +49,22 @@
             redirect("Login");
         }
 
+        public function emailExist() {
+            $this->load->model('Dirigeant');
+            $email = $this->input->post('email');
+            $reponse = $this->Dirigeant->emailExist($email);
+            echo $reponse;
+        }
+
+        public function emailPasswordValid() {
+            $this->load->model('Dirigeant');
+            $this->load->model('Entreprise');
+            $mail = $this->input->post('email');
+            $pswd = $this->input->post('password');
+            $tab =  $this->Dirigeant->checkUtilisateurExist($mail, $pswd);
+            echo $tab['count'];
+        }
+
         
      }
 ?>

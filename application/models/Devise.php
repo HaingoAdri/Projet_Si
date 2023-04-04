@@ -79,12 +79,5 @@
             return $tab[0];
         }
 
-        public function deviseRetenuDuCompte($idEntreprise) {
-            $liste = listeDeviseEntreprise($idEntreprise);
-            return $liste[0];
-        }
-
-        
-
     }
 ?>

@@ -33,7 +33,6 @@
         }
 
         public function listeCode($idEntreprise) {
-            $this->db->order_by('id', 'asc');
             $this->db->where('identreprise', $idEntreprise);
             $query = $this->db->get('code');
 
@@ -50,6 +49,16 @@
                 }
             }
             return $liste2;
+        }
+
+        public function getOneCode($code,$idEntreprise){
+            $requette = "select * from code where code = '".$code."' and idEntreprise = ".$idEntreprise;
+            $query = $this->db->query($requette);            
+            $tab = array();
+            foreach($query->result_array() as $row){
+                $tab = $row;
+            }
+            return $tab;
         }
 
         public function updateCode() {
@@ -77,8 +86,11 @@
 
             return $code;
         }
+
         
 
 
     }
 ?>
+
+<!-- checkdate(int month, day, hear) -->

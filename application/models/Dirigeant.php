@@ -105,6 +105,12 @@
             return $tab;
         }
 
+        public function emailExist($email) {
+            $requette = "select * from dirigeant where email='%s'";
+            $requette = sprintf($requette, $email);
+            $query = $this->db->query($requette);    
+            return $query->num_rows();
+        }
 
     }
 ?>

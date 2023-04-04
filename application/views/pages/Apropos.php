@@ -1,120 +1,118 @@
 <?php
   $this->load->view("pages/templates/header");
 ?>
+<main id="main" class="main">
 
-<div class="content">
-    <div class="animated fadeIn">
-        <div class="card-body card-block">
-            <div class="row">
-            <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>A propos de l'entreprise</strong> 
-                            </div>
-                            <div class="card-body card-block">
-                                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Date de Creation:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $_SESSION['dateDeCreation']; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Nom:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $_SESSION['nom']; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Objet:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $_SESSION['objet']; ?></p>
-                                        </div>
-                                    </div>
-                                    <?php for($i=0; $i<count($listeAdresse); $i++) { 
-                                        if($listeAdresse[$i]['exist']==0) {
-                                    ?>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label"><?php echo$listeAdresse[$i]['type']; ?>:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $listeAdresse[$i]['valeur']; ?></p>
-                                        </div>
-                                    </div>
-                                    <?php } }  ?>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">La devise tenu du compte:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $devise[0]->devise; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Capital:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $_SESSION['capital']; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Status d'etat:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $status->type; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">Numero du Status:</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static"><?php echo $status->numero; ?></p>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>A propos du Dirigeant</strong> 
-                            </div>
-                            <div class="card-body card-block">
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Date:</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static"><?php echo $dirigeant->date; ?></p>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Nom:</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static"><?php echo $dirigeant->nom; ?></p>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Prenom:</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static"><?php echo $dirigeant->prenom; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
-                            </div>
-                        </div>
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <h2><?php echo $_SESSION['nom']; ?></h2>
                     </div>
+                </div>
 
-              </div>
+            </div>
+
+            <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#entreprise">Entreprise</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dirigeant">Dirigeant</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active entreprise" id="entreprise">
+                            <h5 class="card-title">Details de l'entreprise</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Date de creation</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $_SESSION['dateDeCreation']; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Nom</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $_SESSION['nom']; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Objet</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $_SESSION['objet']; ?></div>
+                            </div>
+
+                            <?php for($i=0; $i<count($listeAdresse); $i++) { 
+                                if($listeAdresse[$i]['exist']==0) {
+                            ?>
+                            <div class="row">
+                                <div class="col col-md-3"><label class=" form-control-label"><?php echo$listeAdresse[$i]['type']; ?></label></div>
+                                    <div class="col-12 col-md-9">
+                                        <p class="form-control-static"><?php echo $listeAdresse[$i]['valeur']; ?></p>
+                                    </div>
+                                </div>
+                            <?php } }  ?>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Devise Tenue du compte</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $devise[0]->devise; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Capital</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $_SESSION['capital']; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Statut d'Etat</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $status->type; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Numero de statut</div>
+                                <div class="col-lg-9 col-md-8"><?php echo $status->numero; ?></div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="tab-pane fade dirigeant pt-3" id="dirigeant">
+
+                        <h5 class="card-title">Details du Dirigeant Actuel</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Date </div>
+                                <div class="col-lg-9 col-md-8"><?php echo $dirigeant->date; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nom </div>
+                                <div class="col-lg-9 col-md-8"><?php echo $dirigeant->nom; ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Prenom </div>
+                                <div class="col-lg-9 col-md-8"><?php echo $dirigeant->prenom; ?></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </section>
+</main>
 
 <?php
     $this->load->view("pages/templates/footer");

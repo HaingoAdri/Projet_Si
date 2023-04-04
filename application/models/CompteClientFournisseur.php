@@ -66,7 +66,7 @@
         }
 
         public function listeCompteTiers($idEntreprise) {
-            $this->db->order_by('id', 'asc');
+            $this->db->order_by('id', 'desc');
             $this->db->where('identreprise', $idEntreprise);
             $query = $this->db->get('listecomptetiers');
 

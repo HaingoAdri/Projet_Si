@@ -69,6 +69,7 @@
                 'identreprise' => $idEntreprise,
                 'exist' => 0
             );
+            $this->db->order_by('numero', 'asc');
             $this->db->select('*');
             $this->db->where($conditions);
             $this->db->group_start();
@@ -110,35 +111,60 @@
             return $compte;
         }
 
-        public function searchCompte($postData){
-            $response = array();
-            $searchValue = $postData;
-
-            $searchQuery = '';
-            if($searchValue!=''){
-                $searchQuery="(numero like '%".$searchValue."%' or intitule like '%".$searchValue."')";
-            }
-
+        public function searchCompte($postData,$idEntreprise){
+            echo $postData;
             $this->db->select('*');
-            if($searchQuery!=''){
-                $this->db->where($searchQuery);
+            $this->db->from('compte');
+            $this->db->where('identreprise', $idEntreprise);
+            if(is_numeric($postData) == true){
+                $this->db->where('numero',$postData);
             }
-            $records = $this->db->get('compte')->result();
-
-            $data = array();
-
-            foreach($records as $record){
-                $data[] = array(
-                    "numero"=>$record->numero,
-                    "intitule"=>$record->intitule
-                );
-            }
-            
-            $response = $data;
-            
+            $this->db->or_like('intitule',$postData);
+            $query = $this->db->get();
+            echo $this->db->last_query();
+            $response = $query->result();
             return $response;
         }
 
+        public function numeroDeCompteExisteDeja() {
+            $data = array(
+                'identreprise' => $this->idEntreprise,
+                'numero' => $this->numero,
+                'intitule !=' => $this->intitule
+            );  
+            $query = $this->db->get_where('compte', $data);
+            return $query->num_rows();
+        }
 
+        public function compteExisteDeja($exist) {
+            $data = array(
+                'identreprise' => $this->idEntreprise,
+                'numero' => $this->numero,
+                'intitule' => $this->intitule,
+                'exist' => $exist
+            );  
+            $query = $this->db->get_where('compte', $data);
+            return $query->num_rows();
+        }
+
+        public function modifierUnCompteDonnees() {
+            $data = array(
+                'identreprise' => $this->idEntreprise,
+                'numero' => $this->numero,
+                'intitule' => $this->intitule,
+                'exist' => 1
+            );  
+            $query = $this->db->get_where('compte', $data);
+            $compte = new Compte();
+            $liste = [];
+            if ($query->num_rows() > 0) {
+                $liste = $query->result();
+            }
+            if(count($liste) == 1) {
+                $compte = new Compte("".$liste[0]->id, "".$liste[0]->identreprise, "".$liste[0]->numero, "".$liste[0]->intitule);     
+                $compte->exist = $liste[0]->exist;
+            }
+            $compte->update(0);
+        }
     }
 ?>

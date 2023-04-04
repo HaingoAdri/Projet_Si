@@ -38,5 +38,14 @@
 
        }
 
+       public function testDebutExercice($date){
+        $this->db->where('fin > ', $date);
+        $query = $this->db->get('exercice');
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        return false;
+
+       }
     }
 ?>
