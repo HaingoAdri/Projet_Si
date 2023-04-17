@@ -14,8 +14,9 @@
         public $montant;
         public $num;
         public $cause;
+        public $exo;
 
-        public function __construct($id = "",$idEntreprise = "", $date = "", $pcg = "", $compte="", $libelle="", $devise="", $taux="", $debit="", $credit="", $montant="", $num="",$cause="") {
+        public function __construct($id = "",$idEntreprise = "", $date = "", $pcg = "", $compte="", $libelle="", $devise="", $taux="", $debit="", $credit="", $montant="", $num="",$cause="",$exo="") {
             parent::__construct();
             $this->id = $id;
             $this->idEntreprise = $idEntreprise;
@@ -30,6 +31,7 @@
             $this->montant = $montant;
             $this->num = $num;
             $this->cause = $cause;
+            $this->exo = $exo;
         }
 
         public function insert() {
@@ -45,7 +47,8 @@
                 'devise' => $this->devise,
                 'debit' => $this->debit,
                 'credit' => $this->credit,
-                'cause' => $this->cause
+                'cause' => $this->cause,
+                'exo' => $this->exo
             );            
             $this->db->insert('journaux', $data);
         }
@@ -94,6 +97,7 @@
                 $tt['debit'] = $row['debit'];
                 $tt['credit'] = $row['credit'];
                 $tt['cause'] = $row['cause'];
+                $tt['exo'] = $row['exo'];
                 $tab[] = $tt;
             }
             return $tab;
