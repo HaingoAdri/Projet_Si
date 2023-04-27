@@ -18,7 +18,7 @@
         }
 
         public function detailsOneExercice($code, $idEntreprise,$debut, $fin) {
-            $requette = "select * from AllJournaux where date >= '".$debut."' and date <= '".$fin."' and code = '".$code."' and idEntreprise = ".$idEntreprise;
+            $requette = "select * from AllJournaux where date >= '".$debut."' and date <= '".$fin."' and compte = '".$code."' and idEntreprise = ".$idEntreprise;
             $query = $this->db->query($requette);            
             $tab = array();
             foreach($query->result_array() as $row){
@@ -43,7 +43,7 @@
         }
 
         public function getSommeDC($code,$idEntreprise,$debut, $fin){
-            $requette = "select sum(debit) as sumD, sum(credit) as sumC from AllJournaux where date >= '".$debut."' and date <= '".$fin."' and code = '".$code."' and idEntreprise = ".$idEntreprise;
+            $requette = "select sum(debit) as sumD, sum(credit) as sumC from AllJournaux where date >= '".$debut."' and date <= '".$fin."' and compte = '".$code."' and idEntreprise = ".$idEntreprise;
             $query = $this->db->query($requette);            
             $tab = array();
             foreach($query->result_array() as $row){

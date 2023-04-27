@@ -39,6 +39,17 @@
             redirect("exercice/ajout");
         }
 
+        public function oneExo($idExercice){
+            $this->load->model('Exercice_model');
+            $idEntreprise = $_SESSION['id'];
+            $exercice = $this->Exercice_model->getOneExercice($idExercice,$idEntreprise);
+            header('Content-Type: application/json');
+            $data['debug_message'] = 'JSON DATA work';
+            $data['exercice'] = $exercice;
+            $data['json'] = json_encode($data);
+            $this->load->view('json' , $data );
+
+       }
        
 
         

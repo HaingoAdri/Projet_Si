@@ -116,10 +116,7 @@
             $this->db->select('*');
             $this->db->from('compte');
             $this->db->where('identreprise', $idEntreprise);
-            if(is_numeric($postData) == true){
-                $this->db->where('numero',$postData);
-            }
-            $this->db->or_like('intitule',$postData);
+            $this->db->where("Cast(numero as char) LIKE '%".$postData."%' or intitule LIKE '%".$postData."%'");
             $query = $this->db->get();
             echo $this->db->last_query();
             $response = $query->result();
@@ -166,5 +163,23 @@
             }
             $compte->update(0);
         }
+
+        public function donneesParNumeroC($idEntreprise, $compte) {
+            $conditions = array(
+                'identreprise' => $idEntreprise,
+                'numero' => $compte
+            );
+            $query = $this->db->get_where('compte', $conditions); 
+            $compte = new Compte();
+            $liste = [];
+            if ($query->num_rows() > 0) {
+                $liste = $query->result();
+            }
+            if(count($liste) >= 1) {
+                $compte = new Compte("".$liste[0]->id, "".$liste[0]->identreprise, "".$liste[0]->numero, "".$liste[0]->intitule);    
+            }
+
+            return $compte;
+        } 
     }
 ?>

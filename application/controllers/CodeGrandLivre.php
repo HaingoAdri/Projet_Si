@@ -12,22 +12,28 @@
 
         public function index(){
             $this->load->model('GrandLivre');
+            $this->load->model('Compte');
+
             $idEntreprise = $_SESSION['id'];
             $data['exercices'] = $this->GrandLivre->listeExercice($idEntreprise);
-            $this->load->view('pages/listesGrandlivre',$data);
+            $data['comptes'] = $this->Compte->listeCompte($idEntreprise);
+
+            $this->load->view('pages/ListesGrandLivre',$data);
         }
 
         public function afficheGrandLivre($code,$debut,$fin){
             $this->load->model('GrandLivre');
             $this->load->model('Code');
             $idEntreprise = $_SESSION['id'];
-            $data['nomCodeJournal'] = $this->Code->getOneCode($code,$idEntreprise);
+            // $data['nomCodeJournal'] = $this->Code->getOneCode($code,$idEntreprise);
             $data['debut'] = $debut;
             $data['fin'] = $fin;
             $data['details'] = $this->GrandLivre->detailsOneExercice($code,$idEntreprise,$debut,$fin);
             $data['sumDC'] = $this->GrandLivre->getSommeDC($code,$idEntreprise,$debut,$fin);
             $data['resteSolde'] = $this->GrandLivre->getSommeDC($code,$idEntreprise,$debut,$fin)['sumc'] - $this->GrandLivre->getSommeDC($code,$idEntreprise,$debut,$fin)['sumd'];
-            $this->load->view('pages/AffichageGrandLivre',$data);
+            $data['debug_message'] = 'JSON DATA work';
+            $data['json'] = json_encode($data);
+            $this->load->view('json' , $data );
         } 
 
         public function affichecodes($debut,$fin){

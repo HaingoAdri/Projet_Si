@@ -131,9 +131,9 @@
                                 <?php echo $erreur; ?>
                             </div>                        
                         <?php  } ?>
-                        <div class="row mb-3">
+                        <div class="row mb-3" style="margin-left: 400px;">
                             <div class="col-sm-10">
-                            <button type="submit" class="btn btn-secondary btn-sm">Sing In</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Sing In</button>
                             </div>
                         </div>
                         </form>

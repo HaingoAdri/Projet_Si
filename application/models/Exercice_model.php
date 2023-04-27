@@ -38,6 +38,26 @@
 
        }
 
+       public function listeExerciceByIdEntrerise(){
+        $conditions = array(
+            'identreprise' => $this->idEntreprise            ); 
+        $query = $this->db->get_where('exercice', $conditions);
+
+        $liste = array();
+        if ($query->num_rows() > 0) {
+            $liste = $query->result();
+        }
+        $liste2 = array();
+        if(count($liste) > 0) {
+            for($i = 0; $i < count($liste); $i++) {
+                $exercice = new Exercice_model("".$liste[$i]->id, "".$liste[$i]->identreprise, "".$liste[$i]->debut, "".$liste[$i]->fin);     
+                $liste2[] = $exercice;
+            }
+        }
+        return $liste2;
+
+       }
+
        public function testDebutExercice($date){
         $this->db->where('fin > ', $date);
         $query = $this->db->get('exercice');
@@ -47,5 +67,16 @@
         return false;
 
        }
+
+       public function getOneExercice($idExercice,$idEntreprise){
+        $requette = "select * from exercice where id = '".$idExercice."' and idEntreprise = ".$idEntreprise;
+        $query = $this->db->query($requette);            
+        $tab = array();
+        foreach($query->result_array() as $row){
+            $tab = $row;
+        }
+        //echo $this->db->last_query();
+        return $tab;
+    }
     }
 ?>

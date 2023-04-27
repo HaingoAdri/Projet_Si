@@ -14,10 +14,12 @@
             $this->load->model('Code');
             $this->load->model('Devise');
             $this->load->model('Journal_models');
+            $this->load->model('Exercice_model');
             $idEntreprise = $_SESSION['id'];
             $liste['liste'] = $this->Code->listeCode($idEntreprise);
-            $liste['listes'] = $this->Devise->listeDevise();
+            $liste['listes'] = $this->Devise->listeDeviseEntreprise($idEntreprise);
             $liste['listeJ'] = $this->Journal_models->listeJournauxs($idEntreprise);
+            $liste['listeE'] = $this->Exercice_model->listeExercice();
             $this->load->view('pages/Vue_Journal',$liste);
         }
 
@@ -33,19 +35,23 @@
             $this->load->model('Devise');
             $this->load->model('Journal_models');
             $date = $this->input->post('date');
-            $pce = $this->input->post('code');
-            $cact = $this->input->post('compte');
-            $libelle = $this->input->post('nom');
             $devise = $this->input->post('devis');
             $taux = $this->input->post('taux');
-            $debit = $this->input->post('debit');
-            $credit = $this->input->post('credit');
-            $montant = $this->input->post('montant');
-            $numero = $this->input->post('insert');
-            $cause = $this->input->post('cause');
-            $idEntreprise = $_SESSION['id'];
-            $code = new Journal_models("0", $idEntreprise, $date, $pce, $cact, $libelle, $devise, $taux, $debit, $credit, $montant, $numero,$cause);
-            $code->insert();
+            $exo = $this->input->post('exo');
+            for($i=0; $i<count($date); $i++){
+                $dates = $date[$i];
+                $pce = $this->input->post('code')[$i];
+                $cact = $this->input->post('compte')[$i];
+                $libelle = $this->input->post('nom')[$i];
+                $debit = $this->input->post('debit')[$i];
+                $credit = $this->input->post('credit')[$i];
+                $montant = $this->input->post('montant')[$i];
+                $numero = $this->input->post('insert')[$i];
+                $cause = $this->input->post('cause')[$i];
+                $idEntreprise = $_SESSION['id'];
+                $code = new Journal_models("0", $idEntreprise, $dates, $pce, $cact, $libelle, $devise, $taux, $debit, $credit, $montant, $numero,$cause,$exo);
+                $code->insert();
+            }
             redirect("Journal/index");
         }
 

@@ -57,28 +57,5 @@
             $code->updateCode();
             redirect("CodeJournal/ajout");
         }
-
-        public function test() {
-            echo "Oui".'<br>';
-            // <!-- checkdate(int month, day, hear) -->
-            $date_start = date_create("2023-01-01");
-            echo $date_start->format('Y-m-d').'<br>';
-            $end_date = date_create("2021-01-05");
-            $interval = DateInterval::createFromDateString('12 month, -1day');
-            $daterange = new DatePeriod($date_start, $interval, $end_date);
-            foreach($daterange as $date1){
-                // echo $date1->format('Y-m-d').'<br>';
-            }
-            $date = date_add($date_start, $interval);
-            echo $date->format('Y-m-d').'<br>';
-
-
-        }
-
-
-        
-
-       
-        
     }
 ?>

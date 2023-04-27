@@ -92,5 +92,3 @@
 
     }
 ?>
-
-<!-- checkdate(int month, day, hear) -->

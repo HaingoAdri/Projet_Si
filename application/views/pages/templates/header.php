@@ -177,20 +177,35 @@
                     <i class="bi bi-circle"></i><span>Ajout</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?php echo site_url(); ?>CodeGrandLivre/index">
-                    <i class="bi bi-circle"></i><span>Listes des exercices</span>
-                    </a>
-                </li>
             </ul>
         </li><!-- End Icons Nav -->
 
-        <!-- <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
-            <i class="bi bi-question-circle"></i>
-            <span>F.A.Q</span>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#balance-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-bar-chart"></i><span>Balance</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-        </li> -->
+            <ul id="balance-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="<?php echo site_url(); ?>BalanceExercice/index">
+                <i class="bi bi-circle"></i><span>Balance</span>
+                </a>
+            </li>
+            </ul>
+        </li><!-- End Charts Nav -->
+
+        <li class="nav-item">
+                <a class="nav-link " href="<?php echo site_url(); ?>CodeGrandLivre/index">
+                <i class="bi bi-grid"></i>
+                <span>Grand Livre</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link " href="<?php echo site_url(); ?>EtatsFinanciers/index">
+            <i class="bi bi-grid"></i>
+            <span>Bilan</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
 
         </ul>
 

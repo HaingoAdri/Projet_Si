@@ -41,28 +41,26 @@
                 <div class="card-header">Inserer Journal</div>
                 <br>
               <!-- <div class="card-body card-block"> -->
-                
               <form action="<?php echo site_url(); ?>journal/ajoutJournal" method="post" class="">
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="card card-body">
                                 <h5 class="card-title">Ajouter les donnees du nouveau journal</h5>
                                 <div class="form-floating mb-3">
-                                    <select name="exo" class="form-select" id="selection3" aria-label="Floating label select example">
+                                    <select name="exo" class="form-select" id="selection" aria-label="Floating label select example">
                                         <option selected>Exercice</option>
                                         <?php for($i=0; $i<count($listeE); $i++) { ?>
                                             <option value="<?php echo $listeE[$i]['id']; ?>">EXERCICE 1: ((<?php echo $listeE[$i]['debut']; ?>) - (<?php echo $listeE[$i]['fin']; ?>))</option>
                                         <?php } ?>
                                     </select>
-                                    <label for="selection3">Quel Exercice??</label>
+                                    <label for="selection">Quel Exercice??</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <select name="devis" class="form-select" id="selection1" aria-label="Floating label select example">
                                         <option selected>Devise</option>
-                                        <?php for($i=0; $i<count($listes); $i++) { 
-                                            if($listes[$i]->exist == 0) {    ?>
-                                            <option value="<?php echo $listes[$i]->id; ?>"><?php echo $listes[$i]->devise; ?></option>
-                                        <?php }  } ?>
+                                        <?php for($i=0; $i<count($listes); $i++) { ?>
+                                            <option value="<?php echo $listes[$i]['id']; ?>"><?php echo $listes[$i]['devise']; ?></option>
+                                        <?php } ?>
                                     </select>
                                     <label for="selection1">Quel Devise ??</label>
                                 </div>
@@ -73,7 +71,35 @@
                             </div>
                         </div>
                         <div class="col-lg-1"></div>
-                        
+                        <div class="col-lg-5">
+
+                            <div class="card">
+                                <div class="card-body">
+                                <h5 class="card-title">Importer des nouvaux journaux</h5>
+                                    <form  action="<?php echo site_url(); ?>CompteGeneral/lireFichier" method="post" enctype="multipart/form-data">
+                                    <div class="row mb-3">
+                                        <label class="custom-file-upload">
+                                            <input type="file" name="file" id="file-input" size="20" />
+                                            <i class="fa fa-cloud-upload"></i> Choisissez un fichier
+                                        </label>
+                                    </div>
+                                    <div class="alert alert-success d-none" id="file-name-container" role="alert">
+                                        <p id="file-name"></p>
+                                    </div>
+                                    <?php if(isset($erreur)) { ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $erreur; ?>
+                                        </div>                        
+                                    <?php  } ?>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-10">
+                                            <button type="submit" name="submit" class="btn btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- <div class="row form-group"> -->
@@ -98,16 +124,11 @@
                                             <input type="date"  name="date[]" placeholder="Text" class="form-control">
                                             </td>
                                             <td>
-                                                <div class="form-floating mb-3">
-                                                    <select name="code[]" class="form-select" id="selection" aria-label="Floating label select example">
-                                                        <option selected>Code</option>
-                                                        <?php for($i=0; $i<count($liste); $i++){?>
-                                                        <option value="<?php echo $liste[$i]->id; ?>"><?php echo $liste[$i]->intitule; ?></option>
-                                                        <?php }?>
-                                                    </select>
-                                                    <label for="selection">Code journal</label>
-                                                </div>
-                                            </td>
+                                            <select name="code[]"  class="form-control piece-select" id="selection">
+                                                <?php for($i=0; $i<count($liste); $i++){?>
+                                                    <option value="<?php echo $liste[$i]->id; ?>"><?php echo $liste[$i]->intitule; ?></option>
+                                                <?php }?>
+                                            </select></td>
                                             <td><input type="text"  name="insert[]" placeholder="num" class="form-control "></td>
                                             <td><input type="number"  name="compte[]" placeholder="PCG" class="form-control clear"></td>
                                             <td><input type="Text"  name="nom[]" placeholder="annexe/Tiers" class="form-control clear"></td>

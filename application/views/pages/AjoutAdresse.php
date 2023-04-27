@@ -68,3 +68,4 @@
 <?php
     $this->load->view("pages/templates/footer");
 ?>
+

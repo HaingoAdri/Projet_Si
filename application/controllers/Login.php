@@ -35,7 +35,7 @@
                 $_SESSION['objet'] = $entreprise->objet;
                 $_SESSION['dateDeCreation'] = $entreprise->dateDeCreation;
                 $_SESSION['idDeviseTenuCompte'] = $entreprise->idDeviseTenuCompte;
-                redirect("Connexion/accueil");
+                redirect("Connexion/apropos");
             }
             else{
                 $erreur = "Erreur de e-mail ou bien mot de pass invalide";

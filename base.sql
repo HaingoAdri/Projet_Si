@@ -167,6 +167,9 @@ create table Journaux(
     credit double precision,
     foreign key (idEntreprise) references Entreprise(id)    
 );
+-- modification de table journaux
+ALTER TABLE journaux add exo int;
+alter table journaux add foreign key (exo) references exercice(id);
 
 create or replace view listeJournaux as
     select j.id,date, c.intitule,compte,num,libelle,cause,montant,  taux, d.devise, debit , credit from Journaux  as  j  join code as c on j.pcg = c.id join listedevise as d on j.devise = d.id order by j.id asc;
@@ -188,7 +191,7 @@ create or replace view listeCompteTiers as
         select t.id, t.identreprise, t.idcompte, c.intitule compte, t.numero, t.intitule, t.exist from tiers t join compte c on t.idcompte=c.id where c.exist=0;
 
 create or replace view listeJournaux as
-    select j.id,date, c.intitule,c.code,compte,num,libelle,cause,montant,cause  taux, d.devise, debit , credit from Journaux  as  j  join code as c on j.pcg = c.id join listedevise as d on j.devise = d.id order by j.id asc;
+    select j.id,date, c.intitule,compte,num,libelle,cause,montant,  taux, d.devise, debit , credit, exo from Journaux  as  j  join code as c on j.pcg = c.id join listedevise as d on j.devise = d.id  order by j.id asc;
 
 create or replace view AllJournaux as
     select j.*,c.intitule,c.code from Journaux  as  j  join code as c on j.pcg = c.id;
@@ -198,7 +201,7 @@ create or replace view AllJournaux as
 --------- SEQUENCE && FUNCTION
 
 -- Client
-CREATE SEQUENCE SeqClient
+CREATE SEQUENCE SeqClient       
 START WITH 1
 INCREMENT BY 1
 MINVALUE 1

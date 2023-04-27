@@ -52,6 +52,23 @@
             return $liste2;
         }
 
+        public function listeDeviseUnEntreprise($idEntreprise) {
+            $requette = " select * from listedeviseentreprise where identreprise = ". $idEntreprise ." and exist = 0";
+            $query = $this->db->query($requette);            
+            $tab = array();
+            foreach($query->result_array() as $row){
+                $typeS = array();
+                $typeS['id'] = $row['id']; 
+                $typeS['devise'] = $row['devise'];
+                $tab[] = $typeS;
+                $devise = new Devise($row['id'], $row['identreprise'], $row['idlistedevise']);
+                $devise->devise = $row['devise'];
+                $devise->exist = $row['exist'];
+                $tab[] = $devise;
+            }
+            return $tab;
+        }
+
         public function listeDevise() {
             $requette = "select * from listeDevise";
             $query = $this->db->query($requette);            
