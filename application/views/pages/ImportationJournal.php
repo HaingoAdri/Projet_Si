@@ -5,7 +5,6 @@
             <form  action="<?php echo site_url(); ?>journal/lireFichier" method="post" enctype="multipart/form-data">
                 <input type="number" name="idExercice" id="idExercice" value="0" hidden>
                 <input type="number" name="idDevise" id="idDevise" value="0" hidden>
-                <input type="number" name="tauxImp" id="tauxImp" value="-1" hidden>
                 <div class="row mb-3">
                     <label class="custom-file-upload">
                         <input type="file" name="file" id="file-input" size="20" />

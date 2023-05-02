@@ -75,10 +75,10 @@
             $this->load->model('Journal_models');
             $this->load->model('CompteClientFournisseur');
             $this->load->model('Exercice_model');
+            $this->load->model('TauxDevise');
             $idEntreprise = $_SESSION['id'];
             $idExercice = $this->input->post('idExercice');
             $idDevise = $this->input->post('idDevise');
-            $taux = $this->input->post('tauxImp');
             if($idExercice == 0 || $idDevise == 0 || $taux == -1) {
                 $erreurLire = "Vous devriez d'abord choisir un exercice, une devise, <br> et entrer le taux du devise avant d'ajouter le fichier";
                 redirect("Journal/index?erreurLire=".$erreurLire);
@@ -89,7 +89,7 @@
                 if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
                     // Ouvrir le fichier en mode lecture
                     $fichier = fopen($_FILES['file']['tmp_name'], 'r');
-
+                    
                     // Parcourir le fichier ligne par ligne
                     $data = [];
                     while(($ligne = fgetcsv($fichier)) !== false){
@@ -105,6 +105,7 @@
                             $erreurLire = "Nombre de colonne manquante, verifier ligne " . $i;
                             redirect("Journal/index?erreurLire=".$erreurLire);
                         }
+                        $taux = $this->TauxDevise->taux($idEntreprise, $ligne[0], $idDevise);
                         $debit = $ligne[6];
                         $credit = $ligne[7];
                         $montant = 0;
@@ -158,7 +159,7 @@
             $idEntreprise = $_SESSION['id'];
             $idDevise = $this->input->post('idDevise');
             $date = $this->input->post('date');
-            $taux = $this->TauxDevise->taux($idEntreprise, $date, $idDevise);
+            $taux = $this->TauxDevise->taux($idEntreprise, $date, $idDevise)->taux;
             header('Content-Type: application/json');
             echo json_encode($taux);
         }
