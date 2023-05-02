@@ -27,16 +27,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="balance" style="display:none">
                 <div class="col-lg-12">
                     <div class="card">
                         <h3 class="card-title text-center">BALANCE DES COMPTES</h3>
                         <div class="card-body">
                             <p class="text-center"><STRONG>Complete</STRONG></p>
                             <div style="float: right; margin: -90px 0px 5px 0px;">
-                                <p id="debut">blabla</p>
-                                <p id="fin">blabla</p>
-                                <p id="devise">blabla</p>
+                                <p id="debut"></p>
+                                <p id="fin"></p>
+                                <p id="devise"></p>
                             </div>
                         </div>
                         <p style="margin: -70px 0px 5px 15px;"><STRONG><?php echo $_SESSION['nom']; ?></STRONG></p>
@@ -123,6 +123,8 @@
                     devise.innerHTML = "Tenue de compte: " + deviseRetenu[0].devise;
                     const table = document.getElementById("liste");
                     table.style.display = "block";
+                    const balance = document.getElementById("balance");
+                    balance.style.display = "block";
                     
                 } else {
                     console.log("Erreur sur la requête");

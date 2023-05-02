@@ -26,7 +26,7 @@
                 'idtypeadresse' => $this->idTypeAdresse,
                 'valeur' => $this->valeur
             );            
-            $this->db->insert('adresses', $data);
+            $this->db->insert('adresse', $data);
         }
 
         public function listeAdresse($idEntreprise) {
