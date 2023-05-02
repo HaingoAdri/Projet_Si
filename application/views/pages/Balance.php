@@ -75,33 +75,35 @@
                     document.getElementById("tbody").textContent = "";
                     var tbody = document.getElementById("tbody");
                     console.log(reponse);
-                    var liste = JSON.parse(reponse);
-                    console.log(liste.length);
-                    for(var i = 0; i< liste.length;i++){
-                        console.log(" mitety ");
-                        var elementTR = document.createElement("tr");
-                        var elementTD1 = document.createElement("th");
-                        elementTD1.textContent = liste[i].compte;
-                        var elementTD2 = document.createElement("td");
-                        elementTD2.textContent = liste[i].intitule;
-                        var elementTD3 = document.createElement("td");
-                        elementTD3.textContent = liste[i].debit;
-                        var elementTD4 = document.createElement("td");
-                        elementTD4.textContent = liste[i].credit;
-                        var elementTD5 = document.createElement("td");
-                        elementTD5.textContent = liste[i].soldeDebiteur;
-                        var elementTD6 = document.createElement("td");
-                        elementTD6.textContent = liste[i].soldeCrediteur;
-                        elementTR.appendChild(elementTD1);
-                        elementTR.appendChild(elementTD2);
-                        elementTR.appendChild(elementTD3);
-                        elementTR.appendChild(elementTD4);
-                        elementTR.appendChild(elementTD5);
-                        elementTR.appendChild(elementTD6);
-                        tbody.appendChild(elementTR);
-                    }
-                    const table = document.getElementById("liste");
-                    table.style.display = "block";
+                        var res = JSON.parse(reponse);
+                        var liste = res.liste;
+                        console.log(liste.length);
+                        console.log
+                        for(var i = 0; i< liste.length;i++){
+                            console.log(" mitety ");
+                            var elementTR = document.createElement("tr");
+                            var elementTD1 = document.createElement("th");
+                            elementTD1.textContent = liste[i].compte;
+                            var elementTD2 = document.createElement("td");
+                            elementTD2.textContent = liste[i].intitule;
+                            var elementTD3 = document.createElement("td");
+                            elementTD3.textContent = liste[i].debit;
+                            var elementTD4 = document.createElement("td");
+                            elementTD4.textContent = liste[i].credit;
+                            var elementTD5 = document.createElement("td");
+                            elementTD5.textContent = liste[i].soldeDebiteur;
+                            var elementTD6 = document.createElement("td");
+                            elementTD6.textContent = liste[i].soldeCrediteur;
+                            elementTR.appendChild(elementTD1);
+                            elementTR.appendChild(elementTD2);
+                            elementTR.appendChild(elementTD3);
+                            elementTR.appendChild(elementTD4);
+                            elementTR.appendChild(elementTD5);
+                            elementTR.appendChild(elementTD6);
+                            tbody.appendChild(elementTR);
+                        }
+                        const table = document.getElementById("liste");
+                        table.style.display = "block";
                 } else {
                     console.log("Erreur sur la requête");
                 }

@@ -81,7 +81,7 @@
             return $liste2;
         }
         public function listeJournauxs($idEntreprise){
-            $query = "select * from listeJournaux where idEntreprise = " . $idEntreprise . "order by id desc";
+            $query = "select * from listeJournaux where idEntreprise = " . $idEntreprise . " order by id desc";
             $sql = $this->db->query($query);
             $tab = array();
             foreach($sql->result_array() as $row){

@@ -3,11 +3,466 @@
 ?>
 
 <main id="main" class="main">
-    <section class="section">
+
+    <section class="section" id="actif">
+        <br  style="margin-top:5%;">
+
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="pagetitle">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#actif">Actif</a></li>
+                                    <li class="breadcrumb-item"><a href="#passif">Passif</a></li>
+                                    <li class="breadcrumb-item active"><a href="#resultat">Resultat</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <span><span class="card-title">SOCIETE :</span> <?php echo $_SESSION["nom"]; ?></span>
+                        <br>
+                        <span><span class="card-title">ADRESSE :</span></span>
+                        <br>
+                        <span><span class="card-title">CAPITAL :</span></span>
+                        <br>
+                        <span><span class="card-title">CIF :</span></span>
+                        <br>
+                        <span><span class="card-title">STAT :</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <h3 class="card-title"> BILAN ACTIF</h3>
+                    <div class="card-body" style="margin-top:-3%">
+                        EXERCICE CLOS AU <strong>31/12/2023</strong>.
+                        <br>
+                        <span> Unite monetaire: <span class="card-title">ARIARY</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col col-6">ACTIF</th>
+                                    <th class="col col-2">COMPTE</th>
+                                    <th class="col col-2" style="text-align:center" colspan="3">December-12</th>
+                                    <th class="col col-2">December-20</th>
+                                </tr>
+                                <tr>
+                                    <th class="col col-6"></th>
+                                    <th class="col col-2"></th>
+                                    <th class="col col-2" style="text-align:center" colspan="3">MONTANT</th>
+                                    <th class="col col-2"></th> 
+                                </tr>
+                                <tr>
+                                    <th class="col col-6"></th>
+                                    <th class="col col-2"></th>
+                                    <th class="col col-1">Brut</th>
+                                    <th class="col col-1">Amort./Prov.</th>
+                                    <th class="col col-1">Net</th>
+                                    <th class="col col-2"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th class="col col-6">ACTIFS NON COURANT</th>
+                                    <td class="col col-2"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">Immobilisations Incorporelles</td>
+                                    <td class="col col-2">20</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">Immobilisations Corporelles</td>
+                                    <td class="col col-2">21</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">Immobilisations Biologiques</td>
+                                    <td class="col col-2">22</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">Immobilisations En Cours</td>
+                                    <td class="col col-2">23</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">Immobilisations Financieres</td>
+                                    <td class="col col-2">25</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">Impots Differes</td>
+                                    <td class="col col-2">13</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="col col-6">TOTAL ACTIFS NON COURANTs</th>
+                                    <td class="col col-2"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="col col-6">ACTIFS COURANTs</th>
+                                    <td class="col col-2"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">STOCKS ET EN COURS</td>
+                                    <td class="col col-2">3</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">CREANCES ET EMPLOIS ASSIMILES</td>
+                                    <td class="col col-2">4...</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6" style="text-align:center;">Clients et autres debiteurs</td>
+                                    <td class="col col-2">41</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6" style="text-align:center;">Impots/Benefices</td>
+                                    <td class="col col-2"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6" style="text-align:center;">Autres Creances et actifs assimiles</td>
+                                    <td class="col col-2">4...</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col col-6">TRESORERIE ET EQUIVALENTS DE TRESORERIE</td>
+                                    <td class="col col-2">5...</td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="col col-6">TOTAL ACTIFS COURANTS</th>
+                                    <td class="col col-2"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="col col-6">TOTAL DES ACTIFS</th>
+                                    <td class="col col-2"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-1"></td>
+                                    <td class="col col-2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="section" id="passif">
+        <br  style="margin-top:5%;">
+
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="pagetitle">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#actif">Actif</a></li>
+                                    <li class="breadcrumb-item"><a href="#passif">Passif</a></li>
+                                    <li class="breadcrumb-item active"><a href="#resultat">Resultat</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <span><span class="card-title">SOCIETE :</span> <?php echo $_SESSION["nom"]; ?></span>
+                        <br>
+                        <span><span class="card-title">ADRESSE :</span></span>
+                        <br>
+                        <span><span class="card-title">CAPITAL :</span></span>
+                        <br>
+                        <span><span class="card-title">CIF :</span></span>
+                        <br>
+                        <span><span class="card-title">STAT :</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <h3 class="card-title"> BILAN PASSIF</h3>
+                    <div class="card-body" style="margin-top:-3%">
+                        EXERCICE CLOS AU <strong>31/12/2023</strong>.
+                        <br>
+                        <span> Unite monetaire: <span class="card-title">ARIARY</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align:center">December-12</th>
+                                    <th>December-20</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>COMPTE</th>
+                                    <th>MONTANT</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th>CAPITAUX PROPRES</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Capital Emis</td>
+                                    <td>10</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Reserves Legales</td>
+                                    <td>11</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Resultats en instance d'affectation</td>
+                                    <td>12...</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Resultat Net</td>
+                                    <td>12...</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Autres Capitaux Propres</td>
+                                    <td>11</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>TOTAL DES CAPITAUX PROPRES</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>PASSIFS NON-COURANTS</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Impots differes</td>
+                                    <td>13</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Emprunts/dettes a LMT part+1an</td>
+                                    <td>161</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align:center;">TOTAL PASSIFS NON-COURANTS</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>PASSIFS COURANTS</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Emprunts/dettes a LMT part-1an</td>  
+                                    <td>161</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Dettes court terme</td>  
+                                    <td>165</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Fournisseurs et comptes rattaches</td>  
+                                    <td>4</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Avances recues des clients</td>  
+                                    <td>4</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Autres dettes</td>  
+                                    <td>4</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Comptes de tresorerie</td>  
+                                    <td>5</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align:center;">TOTAL PASSIFS COURANTS</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>TOTAL DES CAPITAUX PROPRES ET PASSIFS</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="resultat">
+        <br  style="margin-top:5%;">
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="pagetitle">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#actif">Actif</a></li>
+                                    <li class="breadcrumb-item"><a href="#passif">Passif</a></li>
+                                    <li class="breadcrumb-item active"><a href="#resultat">Resultat</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <span><span class="card-title">SOCIETE :</span> <?php echo $_SESSION["nom"]; ?></span>
+                        <br>
+                        <span><span class="card-title">ADRESSE :</span></span>
+                        <br>
+                        <span><span class="card-title">CAPITAL :</span></span>
+                        <br>
+                        <span><span class="card-title">CIF :</span></span>
+                        <br>
+                        <span><span class="card-title">STAT :</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <h3 class="card-title"> COMPTE DE RESULTAT</h3>
+                    <span style="margin-top: -4%;">(Par nature)</span>
+                    <div class="card-body">
+                        Periode du <strong>01/01/2023</strong> au <strong>31/12/2023</strong>.
+                        <br>
+                        <span> Unite monetaire: <span class="card-title">ARIARY</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
                     <div class="card-body">
                         <table class="table">
                             <thead>
@@ -146,13 +601,13 @@
                                     <td class="alignright"></td>
                                 </tr>
                                 <tr>
-                                    <th><center>TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES</center></th>
+                                    <th style="text-align:center">TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES</th>
                                     <th></th>
                                     <th class="alignright">4,000,000.00</th>
                                     <th class="alignright"></th>
                                 </tr>
                                 <tr>
-                                    <th><center>TOTAL DES CHARGES DES ACTIVITES ORDINAIRES</center></th>
+                                    <th style="text-align:center">TOTAL DES CHARGES DES ACTIVITES ORDINAIRES</th>
                                     <th></th>
                                     <th class="alignright">1,720,000.00</th>
                                     <th class="alignright"></th>

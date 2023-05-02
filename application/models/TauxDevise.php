@@ -54,9 +54,8 @@
             );            
             $this->db->order_by('date', 'desc');
             $query = $this->db->get_where('listetauxdevise', $data);
-            $liste = array();
+            $liste2 = array();
             $taux = new TauxDevise();
-            $taux->taux = 0;
             if ($query->num_rows() > 0) {
                 $liste = $query->result();
             }

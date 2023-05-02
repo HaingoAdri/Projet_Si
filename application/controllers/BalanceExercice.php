@@ -23,7 +23,9 @@
             $idExercice = $this->input->post('idExercice');
             $liste = $this->Balance->listeResultat( $_SESSION['id'], $idExercice);
             header('Content-Type: application/json');
-            echo json_encode($liste);
+            $data['liste'] = $liste;
+            $data['json'] = json_encode($data);
+            $this->load->view('json.php',$data);
         }
 
 
