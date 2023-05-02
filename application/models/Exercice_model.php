@@ -91,15 +91,5 @@
             }
             return 1; 
         }
-
-        public function getExercice($idEntreprise, $date){
-            $requette = "select * from exercice where debut < '".$date."' and idEntreprise = ".$idEntreprise;
-            $query = $this->db->query($requette);            
-            $tab = array();
-            foreach($query->result_array() as $row){
-                $tab = $row;
-            }
-            return $tab;
-        }
     }
 ?>

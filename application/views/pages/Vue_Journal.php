@@ -51,7 +51,7 @@
                                         <option value="0" selected>Devise</option>
                                         <?php for($i=0; $i<count($listes); $i++) { 
                                             if($listes[$i]->exist == 0) {    ?>
-                                            <option value="<?php echo $listes[$i]->idListeDevise; ?>"><?php echo $listes[$i]->devise; ?></option>
+                                            <option value="<?php echo $listes[$i]->id; ?>"><?php echo $listes[$i]->devise; ?></option>
                                         <?php }  } ?>
                                     </select>
                                     <label for="devise">Quel Devise ??</label>
@@ -202,11 +202,35 @@
 //change le taux dans le formulaire
     function onDateChanged(input) {
         var newDate = input.value;
+        console.log(newDate);
         var idDevise = document.getElementById("devise");
         var selectedOption = idDevise.options[idDevise.selectedIndex];
         var selectedOptionId = selectedOption.value;
-        console.log("Nouvelle date: " + newDate);
-        console.log("ID de l'option sélectionnée idDevise : " + selectedOptionId);
+        var taux = document.getElementById("montant");
+        if(idDevise != 0) {
+            const formData = new FormData();
+            formData.append("idDevise", selectedOptionId); 
+            formData.append("date", newDate);
+            const request = new XMLHttpRequest();
+            request.open("POST", "<?php echo site_url(); ?>Journal/taux", true);
+            request.onload = function() {
+                if( request.status >= 200 && request.status < 400 ){
+                    console.log("ato izy");
+                    const reponse = request.responseText;
+                    var liste = JSON.parse(reponse);
+                    console.log(liste);
+                    taux.value = liste.taux;
+                    console.log("taux = " + taux.value);
+                }
+                else{
+                    console.log("Erreur sur la requette aki anh");
+                }
+            }
+            request.onerror = function() {
+                console.log("La requette a echoue");
+            }
+            request.send(formData);
+        }
     }
 
 
@@ -220,13 +244,6 @@
         console.log("ID de l'option sélectionnée idDevise : " + selectedOptionId);
         var inputIdDevise = document.getElementById("idDevise");
         inputIdDevise.value = selectedOptionId;
-    });
-//changer le taux dans le formulaire de l'importation du fichier 
-    var taux = document.getElementById("montant");
-    taux.addEventListener("change", function() {
-        console.log("taux  : " + taux.value);
-        var tauxImp = document.getElementById("tauxImp");
-        tauxImp.value = taux.value;
     });
 
 //---------------------------------------------------------------------------------------------------

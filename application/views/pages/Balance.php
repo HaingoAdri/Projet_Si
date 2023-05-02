@@ -27,15 +27,27 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <h3 class="card-title text-center">BALANCE DES COMPTES</h3>
+                        <div class="card-body">
+                            <p class="text-center"><STRONG>Complete</STRONG></p>
+                            <div style="float: right; margin: -90px 0px 5px 0px;">
+                                <p id="debut">blabla</p>
+                                <p id="fin">blabla</p>
+                                <p id="devise">blabla</p>
+                            </div>
+                        </div>
+                        <p style="margin: -70px 0px 5px 15px;"><STRONG><?php echo $_SESSION['nom']; ?></STRONG></p>
+                    </div>
+                </div>
+            </div>
             <div class="row" id="liste" style="display:none" >
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                         <h5 class="card-title">Balance</h5>
-
-                            <!-- Default Table -->
                             <table class="table" border=1>
                                 <thead>
                                 <tr>
@@ -75,35 +87,43 @@
                     document.getElementById("tbody").textContent = "";
                     var tbody = document.getElementById("tbody");
                     console.log(reponse);
-                        var res = JSON.parse(reponse);
-                        var liste = res.liste;
-                        console.log(liste.length);
-                        console.log
-                        for(var i = 0; i< liste.length;i++){
-                            console.log(" mitety ");
-                            var elementTR = document.createElement("tr");
-                            var elementTD1 = document.createElement("th");
-                            elementTD1.textContent = liste[i].compte;
-                            var elementTD2 = document.createElement("td");
-                            elementTD2.textContent = liste[i].intitule;
-                            var elementTD3 = document.createElement("td");
-                            elementTD3.textContent = liste[i].debit;
-                            var elementTD4 = document.createElement("td");
-                            elementTD4.textContent = liste[i].credit;
-                            var elementTD5 = document.createElement("td");
-                            elementTD5.textContent = liste[i].soldeDebiteur;
-                            var elementTD6 = document.createElement("td");
-                            elementTD6.textContent = liste[i].soldeCrediteur;
-                            elementTR.appendChild(elementTD1);
-                            elementTR.appendChild(elementTD2);
-                            elementTR.appendChild(elementTD3);
-                            elementTR.appendChild(elementTD4);
-                            elementTR.appendChild(elementTD5);
-                            elementTR.appendChild(elementTD6);
-                            tbody.appendChild(elementTR);
-                        }
-                        const table = document.getElementById("liste");
-                        table.style.display = "block";
+                    var donnees = JSON.parse(reponse);
+                    var liste = donnees.liste;
+                    var exercice = donnees.exercice;
+                    var deviseRetenu = donnees.devise;
+                    for(var i = 0; i< liste.length;i++){
+                        console.log(" mitety ");
+                        var elementTR = document.createElement("tr");
+                        var elementTD1 = document.createElement("th");
+                        elementTD1.textContent = liste[i].compte;
+                        var elementTD2 = document.createElement("td");
+                        elementTD2.textContent = liste[i].intitule;
+                        var elementTD3 = document.createElement("td");
+                        elementTD3.textContent = liste[i].debit;
+                        var elementTD4 = document.createElement("td");
+                        elementTD4.textContent = liste[i].credit;
+                        var elementTD5 = document.createElement("td");
+                        elementTD5.textContent = liste[i].soldeDebiteur;
+                        var elementTD6 = document.createElement("td");
+                        elementTD6.textContent = liste[i].soldeCrediteur;
+                        elementTR.appendChild(elementTD1);
+                        elementTR.appendChild(elementTD2);
+                        elementTR.appendChild(elementTD3);
+                        elementTR.appendChild(elementTD4);
+                        elementTR.appendChild(elementTD5);
+                        elementTR.appendChild(elementTD6);
+                        tbody.appendChild(elementTR);
+                        
+                    }
+                    const debut = document.getElementById("debut");
+                    debut.innerHTML = "Periode du " + exercice.debut;
+                    const fin = document.getElementById("fin");
+                    fin.innerHTML = "au " + exercice.fin;
+                    const devise = document.getElementById("devise");
+                    devise.innerHTML = "Tenue de compte: " + deviseRetenu[0].devise;
+                    const table = document.getElementById("liste");
+                    table.style.display = "block";
+                    
                 } else {
                     console.log("Erreur sur la requête");
                 }

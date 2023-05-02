@@ -20,12 +20,14 @@
 
         public function balance() {
             $this->load->model('Balance');
+            $this->load->model('Exercice_model');
+            $this->load->model('Devise');
             $idExercice = $this->input->post('idExercice');
-            $liste = $this->Balance->listeResultat( $_SESSION['id'], $idExercice);
+            $liste["exercice"] = $this->Exercice_model->getOneExercice($idExercice, $_SESSION['id']);
+            $liste["liste"] = $this->Balance->listeResultat( $_SESSION['id'], $idExercice);
+            $liste["devise"] = $this->Devise->listeDeviseEntreprise($_SESSION['id']);
             header('Content-Type: application/json');
-            $data['liste'] = $liste;
-            $data['json'] = json_encode($data);
-            $this->load->view('json.php',$data);
+            echo json_encode($liste);
         }
 
 

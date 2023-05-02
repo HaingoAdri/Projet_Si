@@ -191,7 +191,7 @@ create or replace view listeCompteTiers as
     select t.id, t.identreprise, t.idcompte, c.numero numCompte, c.intitule compte, t.numero, t.intitule, t.exist from tiers t join compte c on t.idcompte=c.id where c.exist=0;
 
 create or replace view listeJournaux as
-    select j.id,date, j.idEntreprise, c.intitule,compte,num,libelle,cause,montant,  taux, d.devise, debit , credit, exo from Journaux  as  j  join code as c on j.pcg = c.id join listedevise as d on j.devise = d.id  order by j.id asc;
+    select j.id,date, j.idEntreprise, c.intitule,compte,num,libelle,cause,montant,  taux, j.devise, debit , credit, exo from Journaux  as  j  join code as c on j.pcg = c.id join devise as d on j.devise = d.id  order by j.id asc;
 
 create or replace view AllJournaux as
     select j.*,c.intitule,c.code from Journaux  as  j  join code as c on j.pcg = c.id;

@@ -11,11 +11,11 @@
         }
 
         public function index(){
-            $this->load->view('pages/BilanPage');
+
+            $this->load->view('pages/Resultat');
+            
         }
 
-        public function showResultat(){
-            $this->load->view('pages/Resultat');
-        }
+        
     }
 ?>
