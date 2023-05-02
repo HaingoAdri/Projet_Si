@@ -10,7 +10,6 @@
                 <div class="card">
                     <div class="card-body">
                     <h5 class="card-title">Choisir une exercice </h5>
-                        <!-- <form action="<?php echo site_url(); ?>BalanceExercice/balance" method="post" class=""> -->
                             <div class="form-floating mb-3">
                                 <select name="idExercice" class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
                                     <option value="-1" selected disabled>Exercice</option>
@@ -25,13 +24,12 @@
                                 <button type="submit" class="btn btn-primary" onclick="listeBalance()">Voir la balance</button>
                                 </div>
                             </div>
-                        <!-- </form> -->
                     </div>
                 </div>
             </div>
             <div class="row" id="liste" style="display:none" >
                 <div class="col-lg-2"></div>
-                <div class="col-lg-9">
+                <div class="col-lg-8">
 
                     <div class="card">
                         <div class="card-body">

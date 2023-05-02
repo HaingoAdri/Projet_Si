@@ -46,8 +46,9 @@
             return $liste2;
         }
 
-        public function taux($date, $idDevise) {
+        public function taux($idEntreprise, $date, $idDevise) {
             $data = array(
+                'identreprise' => $idEntreprise,
                 'date <=' => $date,
                 'iddevise' => $idDevise
             );            
@@ -65,12 +66,12 @@
             return $taux;
         }
 
-        public function getMontantParTauxDevise($idEntreprise, $data, $idDevise, $vola) {
+        public function getMontantParTauxDevise($idEntreprise, $date, $idDevise, $vola) {
             $this->load->model('Devise');
             $deviseRetenuDuCompte = $this->Devise->deviseRetenuDuCompte($idEntreprise);
             $montant = $vola;
             if($deviseRetenuDuCompte->id != $idDevise) {
-                $tauxDevise = $this->taux($date, $idDevise);
+                $tauxDevise = $this->taux($idEntreprise, $date, $idDevise);
                 $montant = $vola * $tauxDevise->taux;
             }
             return $montant;

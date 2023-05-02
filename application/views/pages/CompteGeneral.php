@@ -1,31 +1,6 @@
 <?php
   $this->load->view("pages/templates/header");
 ?>
-<style>
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        border-radius: 4px;
-        color: #555;
-        font-size: 16px;
-    }
-
-    .custom-file-upload:hover {
-        background-color: #009BDE;
-        color: white;
-    }
-
-    .custom-file-upload input[type="file"] {
-        display: none;
-    }
-
-    .custom-file-upload i {
-        margin-right: 5px;
-    }
-</style>
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const fileInput = document.getElementById('file-input');
@@ -37,8 +12,6 @@
             fileNameContainer.classList.remove('d-none');
         });
     });
-
-
 </script>
 
 <main id="main" class="main">

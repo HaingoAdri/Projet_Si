@@ -64,20 +64,16 @@
         }
 
         public function compteClientFournisseur($idEntreprise) {
-            // $like = "like '%fournisseur%' or intitule like '%Fournisseur%' or intitule like '%client%' or intitule like '%Client%'";
             $conditions = array(
                 'identreprise' => $idEntreprise,
-                'exist' => 0
+                'exist' => 0,
+                'numero != ' => 4456,
+                'numero != ' => 4457,
+                'CAST(numero AS VARCHAR) like' => '4%'
             );
             $this->db->order_by('numero', 'asc');
             $this->db->select('*');
             $this->db->where($conditions);
-            $this->db->group_start();
-            $this->db->or_like('intitule', "client");
-            $this->db->or_like('intitule', "Client");
-            $this->db->or_like('intitule', "Fournisseur");
-            $this->db->or_like('intitule', "fournisseur");
-            $this->db->group_end();
             $query = $this->db->get('compte');
 
             $liste = array();
@@ -175,10 +171,9 @@
             if ($query->num_rows() > 0) {
                 $liste = $query->result();
             }
-            if(count($liste) >= 1) {
+            if(count($liste) == 1) {
                 $compte = new Compte("".$liste[0]->id, "".$liste[0]->identreprise, "".$liste[0]->numero, "".$liste[0]->intitule);    
             }
-
             return $compte;
         } 
     }

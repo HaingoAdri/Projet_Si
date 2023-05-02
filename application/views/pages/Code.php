@@ -49,6 +49,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">#Id Code</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Intitule du code</th>
                                 <th scope="col">Modifier</th>
@@ -59,6 +60,7 @@
                                 <?php for($i=0; $i<count($liste); $i++) { ?>
                                 <tr>
                                     <th scope="row"><?php echo $i+1; ?></th>
+                                    <th scope="row"><?php echo $liste[$i]->id; ?></th>
                                     <td><?php echo $liste[$i]->code; ?></td>
                                     <td><?php echo $liste[$i]->intitule; ?></td>
                                     <td><a href="<?php echo site_url(); ?>CodeJournal/Modifier/<?php echo $liste[$i]->id; ?>"><button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></button></a></td>

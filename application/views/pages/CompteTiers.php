@@ -73,9 +73,10 @@
                         <table class="table">
                             <thead>
                             <tr>
+                            <th scope="col">Compte</th>
                                 <th scope="col">Type</th>
                                 <th>Numero</th>
-                                <th>Intitule du compte</th>
+                                <th>Intitule du compte tiers</th>
                                 <th>Modifier</th>
                                 <th>Exist</th>
                             </tr>
@@ -83,6 +84,7 @@
                             <tbody>
                                 <?php for($i=0; $i<count($planTiers); $i++) { ?>
                                     <tr>
+                                        <th scope="row"><?php echo $planTiers[$i]->numCompte ?></th>
                                         <th scope="row"><?php echo $planTiers[$i]->compte ?></th>
                                         <td><?php echo $planTiers[$i]->numero; ?></td>
                                         <td><?php echo $planTiers[$i]->intitule; ?></td>

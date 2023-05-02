@@ -4,6 +4,7 @@
         public $id;
         public $idEntreprise;
         public $idCompte;
+        public $numCompte;
         public $compte;
         public $numero;
         public $intitule;
@@ -80,6 +81,7 @@
                     $compte = new CompteClientFournisseur("".$liste[$i]->id, "".$liste[$i]->identreprise,  "".$liste[$i]->idcompte, "".$liste[$i]->numero, "".$liste[$i]->intitule);     
                     $compte->compte = $liste[$i]->compte;                    
                     $compte->exist = $liste[$i]->exist;
+                    $compte->numCompte = $liste[$i]->numcompte;
                     $liste2[] = $compte;
                 }
             }
@@ -101,6 +103,27 @@
 
             return $compte;
         }
+
+        public function donneesParCompteNumero($idEntreprise, $compte, $numero) {
+            $conditions = array(
+                'identreprise' => $idEntreprise,
+                'numcompte' => $compte,
+                'numero' => $numero
+            );
+            $query = $this->db->get_where('listecomptetiers', $conditions); 
+            $compte = new CompteClientFournisseur();
+            $liste = [];
+            if ($query->num_rows() > 0) {
+                $liste = $query->result();
+            }
+            if(count($liste) == 1) {
+                $compte = new CompteClientFournisseur("".$liste[0]->id, "".$liste[0]->identreprise,  "".$liste[0]->idcompte, "".$liste[0]->numero, "".$liste[0]->intitule);     
+                $compte->compte = $liste[0]->compte;                    
+                $compte->exist = $liste[0]->exist;
+                $compte->numCompte = $liste[0]->numcompte;
+            }
+            return $compte;
+        } 
 
 
     }

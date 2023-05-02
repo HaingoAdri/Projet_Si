@@ -2,69 +2,59 @@
   $this->load->view("pages/templates/header");
 ?>
 
-<style>
-    .boutonAjout {
-        height: 40px !important;
-        width: 80px !important;
-        border-radius: 7px !important;
-        display: block; 
-        margin: 0px 0px 20px 1320px;
-        
-    }
-</style>
-
 <div class="content">
     <br>
     <br>
     <br>
     <br>
     <div class="animated fadeIn">
-                <div class="card">  
-                    <div class="card-header">
-                        <i class="mr-2 fa fa-align-justify"></i>
-                        <strong class="card-title" v-if="headerText">Type de Journal</strong>
-                    </div>
-                    <div class="card-body">
-
-                        <!-- Button trigger modal -->
-                    <?php for($i=0; $i<count($liste); $i++) { ?>
-                      <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#mediumModal">
-                            <?php echo $liste[$i]->intitule; ?>
-                      </button>
-                    <?php } ?>
-                  </div>
-              </div>
+        <div class="card">  
+            <div class="card-header">
+                <i class="mr-2 fa fa-align-justify"></i>
+                <strong class="card-title" v-if="headerText">Type de Journal</strong>
+            </div>
+            <div class="card-body">
+                <?php for($i=0; $i<count($liste); $i++) { ?>
+                    <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#mediumModal">
+                    <?php echo $liste[$i]->intitule; ?>
+                    </button>
+                <?php } ?>
+            </div>
+        </div>
     </div>
     
-    <div class="animated fadeIn">
-         <div class="card">  
+    <div class="animated fadeIn" class="rota">
+        <div class="importation">
+            <?php $this->load->view("pages/ImportationJournal"); ?>
+        </div>
+        <div class="card">  
                 <div class="card-header">Inserer Journal</div>
                 <br>
               <!-- <div class="card-body card-block"> -->
-                
               <form action="<?php echo site_url(); ?>journal/ajoutJournal" method="post" class="">
                     <div class="row">
+                        <div class="col-lg-1"></div>
                         <div class="col-lg-5">
                             <div class="card card-body">
-                                <h5 class="card-title">Ajouter les donnees du nouveau journal</h5>
+                                <h5 class="card-title">Ajouter les nouveaux donnees du journaux</h5>
                                 <div class="form-floating mb-3">
-                                    <select name="exo" class="form-select" id="selection3" aria-label="Floating label select example">
+                                    <select name="exo" class="form-select" id="exo" aria-label="Floating label select example" >
                                         <option selected>Exercice</option>
                                         <?php for($i=0; $i<count($listeE); $i++) { ?>
                                             <option value="<?php echo $listeE[$i]['id']; ?>">EXERCICE 1: ((<?php echo $listeE[$i]['debut']; ?>) - (<?php echo $listeE[$i]['fin']; ?>))</option>
                                         <?php } ?>
                                     </select>
-                                    <label for="selection3">Quel Exercice??</label>
+                                    <label for="exo">Quel Exercice??</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <select name="devis" class="form-select" id="selection1" aria-label="Floating label select example">
-                                        <option selected>Devise</option>
+                                    <select name="devis" class="form-select" id="devise" aria-label="Floating label select example">
+                                        <option value="0" selected>Devise</option>
                                         <?php for($i=0; $i<count($listes); $i++) { 
                                             if($listes[$i]->exist == 0) {    ?>
-                                            <option value="<?php echo $listes[$i]->id; ?>"><?php echo $listes[$i]->devise; ?></option>
+                                            <option value="<?php echo $listes[$i]->idListeDevise; ?>"><?php echo $listes[$i]->devise; ?></option>
                                         <?php }  } ?>
                                     </select>
-                                    <label for="selection1">Quel Devise ??</label>
+                                    <label for="devise">Quel Devise ??</label>
                                 </div>
                                 <div class="form-group has-success">
                                     <label for="cc-name" class="control-label mb-1">Combien de Taux ??</label>
@@ -72,11 +62,10 @@
                                 </div>            
                             </div>
                         </div>
-                        <div class="col-lg-1"></div>
+                        <!-- <div class="col-lg-1"></div> -->
+                        
                         
                     </div>
-
-                    <!-- <div class="row form-group"> -->
                     <div class="card-body">
                                 <table class="table table-striped">
                                     <thead>
@@ -95,7 +84,7 @@
                                     <tbody id="line-container">
                                         <tr  id="tbody">
                                             <td>
-                                            <input type="date"  name="date[]" placeholder="Text" class="form-control">
+                                            <input type="date"  name="date[]" placeholder="Text" class="form-control date-input" id="date[]"  onchange="onDateChanged(this)">
                                             </td>
                                             <td>
                                                 <div class="form-floating mb-3">
@@ -188,7 +177,61 @@
 <?php
     $this->load->view("pages/templates/footer");
 ?>
+
 <script defer>
+//Selection d'un fichier
+    document.addEventListener("DOMContentLoaded", function() {
+        const fileInput = document.getElementById('file-input');
+        const fileName = document.getElementById('file-name');
+        const fileNameContainer = document.getElementById('file-name-container');
+
+        fileInput.addEventListener('change', () => {
+            fileName.textContent = "Le fichier selectionne est " + fileInput.files[0].name;
+            fileNameContainer.classList.remove('d-none');
+        });
+    });
+//changer l'idExercice dans le formulaire de l'importation du fichier 
+    var idExercice = document.getElementById("exo");
+    idExercice.addEventListener("change", function() {
+        var selectedOption = idExercice.options[idExercice.selectedIndex];
+        var selectedOptionId = selectedOption.value;
+        console.log("ID de l'option sélectionnée idExercice : " + selectedOptionId);
+        var inputIdExercice = document.getElementById("idExercice");
+        inputIdExercice.value = selectedOptionId;
+    });
+//change le taux dans le formulaire
+    function onDateChanged(input) {
+        var newDate = input.value;
+        var idDevise = document.getElementById("devise");
+        var selectedOption = idDevise.options[idDevise.selectedIndex];
+        var selectedOptionId = selectedOption.value;
+        console.log("Nouvelle date: " + newDate);
+        console.log("ID de l'option sélectionnée idDevise : " + selectedOptionId);
+    }
+
+
+
+
+//changer l'idEdevise dans le formulaire de l'importation du fichier 
+    var idDevise = document.getElementById("devise");
+    idDevise.addEventListener("change", function() {
+        var selectedOption = idDevise.options[idDevise.selectedIndex];
+        var selectedOptionId = selectedOption.value;
+        console.log("ID de l'option sélectionnée idDevise : " + selectedOptionId);
+        var inputIdDevise = document.getElementById("idDevise");
+        inputIdDevise.value = selectedOptionId;
+    });
+//changer le taux dans le formulaire de l'importation du fichier 
+    var taux = document.getElementById("montant");
+    taux.addEventListener("change", function() {
+        console.log("taux  : " + taux.value);
+        var tauxImp = document.getElementById("tauxImp");
+        tauxImp.value = taux.value;
+    });
+
+//---------------------------------------------------------------------------------------------------
+
+//Ajout journal    
     document.querySelector("#ajout").addEventListener("click", () => {
         ajout()
     })
@@ -197,9 +240,10 @@
     })
 
    function ajout(){
-        var container = document.getElementById("line-container");
+       var container = document.getElementById("line-container");
        var line = document.getElementById("tbody");
        var newLine = line.cloneNode(true);
+    //    document.getElementById("email").classList.add("is-valid");
        var originalSelect = line.querySelector("#selection").value;
         var cloneSelect = newLine.querySelector("#selection");
        
@@ -220,7 +264,7 @@
 
                 var d = newLine.querySelector("#debit_mont");
                 d.value = val;
-
+                newLine.querySelector("input[type='date']").classList.add("date-input");
                 console.log(ll.value)
             }
             else {
@@ -238,7 +282,7 @@
 
                 var d = newLine.querySelector("#debit_mont");
                 d.value = l;
-
+                newLine.querySelector("input[type='date']").classList.add("date-input");
 
             }
        container.appendChild(newLine);
@@ -248,7 +292,6 @@
        document.getElementById("line-container").deleteRow(1);
    }
    function valider(){
-   
        var line = document.getElementById("line-container");
        var newLine = line.cloneNode(true);
 
