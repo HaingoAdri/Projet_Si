@@ -194,6 +194,24 @@
         </li><!-- End Charts Nav -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#produit-centre-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-bar-chart"></i><span>Produits et Centres</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="produit-centre-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="<?php echo site_url(); ?>Centre/index">
+                <i class="bi bi-circle"></i><span>Ajouter Un centre</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url(); ?>Produit/index">
+                <i class="bi bi-circle"></i><span>Ajouter Un produit</span>
+                </a>
+            </li>
+            </ul>
+        </li><!-- End Charts Nav -->
+
+        <li class="nav-item">
                 <a class="nav-link " href="<?php echo site_url(); ?>CodeGrandLivre/index">
                 <i class="bi bi-grid"></i>
                 <span>Grand Livre</span>

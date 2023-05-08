@@ -296,25 +296,25 @@
                                 </tr>
                                 <tr>
                                     <td>Capital Emis</td>
-                                    <td>10</td>
+                                    <td>101</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Reserves Legales</td>
-                                    <td>11</td>
+                                    <td>105</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Resultats en instance d'affectation</td>
-                                    <td>12...</td>
+                                    <td>128.</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Resultat Net</td>
-                                    <td>12...</td>
+                                    <td>120</td>
                                     <td></td>
                                     <td></td>
                                 </tr>

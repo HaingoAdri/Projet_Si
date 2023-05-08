@@ -196,7 +196,9 @@ create or replace view listeJournaux as
 create or replace view AllJournaux as
     select j.*,c.intitule,c.code from Journaux  as  j  join code as c on j.pcg = c.id;
 
-
+Create or replace view JournauxExercice as
+    select journaux.*, exercice.debut, exercice.fin
+    from journaux join exercice on journaux.exo = exercice.id;
 
 --------- SEQUENCE && FUNCTION
 
