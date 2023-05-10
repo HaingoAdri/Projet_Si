@@ -11,12 +11,12 @@
                 <div class="card">
                     <div class="card-body">
                     <h5 class="card-title">Chercher le bilan du:</h5>
-                        <form  method="post" action="<?php echo site_url(); ?>EtatsFinanciers/showResultat" class="">
+                        <form  method="post" action="<?php echo site_url(); ?>EtatsFinanciers/showAll" class="">
 
                         <div class="row mb-3">
                             <label for="inputDate" class="col-sm-2 col-form-label">Date:</label>
                             <div class="col-sm-10">
-                                <input type="date" name="dateEntre" class="form-control" required>
+                                <input type="date" name="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="row mb-3">

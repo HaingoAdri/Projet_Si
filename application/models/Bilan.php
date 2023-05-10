@@ -2,7 +2,7 @@
     if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     class Bilan extends CI_Model {
  
-        public function getResultat($idEntreprise, $date){
+        public function getResultat($idEntreprise, $date, $debut){
 
             $requete = "SELECT 
                 sum(case when compte::text like '70%' then montant else 0 end) as sum70,
@@ -19,7 +19,34 @@
                 sum(case when compte::text like '66%' then montant else 0 end) as sum66,
                 sum(case when compte::text like '77%' then montant else 0 end) as sum77, 
                 sum(case when compte::text like '67%' then montant else 0 end) as sum67
-                FROM JournauxExercice where date > '".$date."' and date < '".$date."' and identreprise = ".$idEntreprise;
+                FROM JournauxExercice where date > '".$debut."' and date 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                < '".$date."' and identreprise = ".$idEntreprise;
 
             $query = $this->db->query($requete);       
 

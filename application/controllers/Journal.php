@@ -164,7 +164,57 @@
             echo json_encode($taux);
         }
 
+        public function detailExist() {
+            $this->load->model('Detail_Charge');
+            $idEntreprise = $_SESSION['id'];
+            $idExercice = $this->input->post('idExercice');
+            $numero = $this->input->post('numero');
+            $boolean = $this->Detail_Charge->detailExist($idEntreprise, $idExercice, $numero);
+            echo json_encode($boolean);
+        }
         
+        public function listeProduitCentre() {
+            $this->load->model('Centre_Model');
+            $this->load->model('Produit_Model');
+            $idEntreprise = $_SESSION['id'];
+            $liste['produit'] = $this->Produit_Model->listeProduit($idEntreprise);
+            $liste['centre'] = $this->Centre_Model->listeCentre($idEntreprise);
+            echo json_encode($liste);
+            return $liste;
+        }
+
+        public function enregistrer() {
+            $this->load->model('Detail_Charge');
+            $this->load->model('Produit_Charge');
+            $this->load->model('Centre_Charge');
+            $idEntreprise = $_SESSION['id'];
+            $idExercice = $this->input->post('idExercice');
+            $compte = $this->input->post('compte');
+            $type = $this->input->post('type');
+            $nature = $this->input->post('nature');
+            $unite = $this->input->post('unite');
+            $valeurProduit = json_decode($this->input->post('valeurProduit'));
+            $valeurCentre = json_decode($this->input->post('valeurCentre'));
+            $valeurPourProduit = json_decode($this->input->post('valeurPourProduit'));
+            $valeurPourCentre = json_decode($this->input->post('valeurPourCentre'));
+            $tailleProduit = count($valeurProduit);
+            $tailleCentre = count($valeurCentre);
+            $Detail_Charge = new Detail_Charge("0", $compte, $type, $nature, $unite, $idExercice, $idEntreprise);
+            $Detail_Charge->insert();
+            
+            for($i =0; $i<$tailleProduit; $i++) {
+                $Produit_Charge = new Produit_Charge("0", $compte, $valeurProduit[$i], $valeurPourProduit[$i], $idExercice, $idEntreprise);
+                $Produit_Charge->insert();
+            }
+            for($i =0; $i<$tailleCentre; $i++) {
+                $Centre_Charge = new Centre_Charge("0", $compte, $valeurCentre[$i], $valeurPourCentre[$i], $idExercice, $idEntreprise);
+                $Centre_Charge->insert();
+            }
+            echo json_encode("Mety aki piso anh!");
+
+        }
+
+
 
        
         

@@ -34,7 +34,6 @@
             if(count($liste) > 0) {
                 for($i = 0; $i < count($liste); $i++) {
                     $produit = new Produit_Model("".$liste[$i]->idproduit, "".$liste[$i]->intitule, "".$liste[$i]->identreprise);     
-                    //$compte->exist = $liste[$i]->exist;
                     $liste2[] = $produit;
                 }
             }

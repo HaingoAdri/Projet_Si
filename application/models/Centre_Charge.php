@@ -1,23 +1,32 @@
 <?php 
     if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    class Centre_Model extends CI_Model {
+    class Centre_Charge extends CI_Model {
+        public $id;
+        public $numero;
         public $idCentre;
-        public $Intitule;
+        public $pourcentage;
+        public $idExercice;
         public $idEntreprise;
 
-        public function __construct($idCentre = "",$Intitule = "", $idEntreprise = "") {
+        public function __construct($id = "",$numero = "", $idCentre = "", $pourcentage = "", $idExercice = "", $idEntreprise = "") {
             parent::__construct();
+            $this->id = $id;
+            $this->numero = $numero;
             $this->idCentre = $idCentre;
-            $this->Intitule = $Intitule;
+            $this->pourcentage = $pourcentage;
+            $this->idExercice = $idExercice;
             $this->idEntreprise = $idEntreprise;
         }
 
         public function insert() {
             $data = array(
-                'intitule' => $this->Intitule,
+                'numero' => $this->numero,
+                'idcentre' => $this->idCentre,
+                'pourcentage' => $this->pourcentage,
+                'idexercice' => $this->idExercice,
                 'identreprise' => $this->idEntreprise
             );            
-            $this->db->insert('centre', $data);
+            $this->db->insert('chargecentre', $data);
         }
 
         public function listeCentre($idEntreprise) {

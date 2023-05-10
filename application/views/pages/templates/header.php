@@ -225,6 +225,13 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link " href="<?php echo site_url(); ?>EtatsFinanciers/index">
+            <i class="bi bi-grid"></i>
+            <span>Analytiques</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
         </ul>
 
     </aside><!-- End Sidebar-->
