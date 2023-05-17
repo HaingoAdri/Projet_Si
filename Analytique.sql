@@ -52,13 +52,15 @@ create table chargeProduit(
 create table chargeCentre(
     id SERIAL PRIMARY KEY,
     numero int,
+    idProduit int,
     idCentre int,
     pourcentage double precision,
     idExercice int,
     idEntreprise int,
     foreign key (idEntreprise) references entreprise(id),
     foreign key (idExercice) references exercice(id),
-    foreign key (idCentre) references Centre(idCentre)
+    foreign key (idCentre) references Centre(idCentre),
+    foreign key (idProduit) references produit(idProduit)
 );
 
 create or replace view lesChargesJournaux as
@@ -66,3 +68,4 @@ create or replace view lesChargesJournaux as
 
 create or replace view centreDetails as
     select chargeCentre.*,centre.Intitule,lesChargesJournaux.debit,lesChargesJournaux.date,detailCharge.types,(lesChargesJournaux.debit*chargeCentre.pourcentage)/100 as montantPourcentage from chargeCentre join centre on chargeCentre.idCentre = centre.idCentre join lesChargesJournaux on chargeCentre.numero = lesChargesJournaux.pcg join detailCharge on detailCharge.numero = chargeCentre.numero;
+    

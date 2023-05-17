@@ -128,11 +128,11 @@
                                                 <p><input type="radio" id="nature1" name="nature" value="1"><button class="btn btn-default clear" type="button">Fixe</button></p>
                                                 <p><input type="radio" id="nature2" name="nature" value="2"><button class="btn btn-default clear" type="button">Variable</button></p>
                                             </div>
-                                            <div class="col-lg-3" id="produit">
+                                            <div class="col-lg-5 accordion accordion-flush" id="produit">
                                                 <h6 for="typeCharge" class="card-title">Ajout pourcentage de(s) Produit(s): </h6>
                                             </div>
-                                            <div class="col-lg-4" id="centre">
-                                                <h6 for="typeCharge" class="card-title">Ajout pourcentage de(s) Centre(s): </h6>
+                                            <div class="col-lg-2" id="centre">
+                                                <h6 for="typeCharge" class="card-title"></h6>
                                             </div>
                                             <div class="col-lg-2 ">
                                                 <h6 for="unite" class="card-title">Unite d'oeuvre:</h6>
@@ -358,15 +358,16 @@
         const listeIdCentre = document.querySelectorAll('input[name="idCentre"]');
         const pourProduit = document.querySelectorAll('input[name="pourproduit"]');
         const pourCentre = document.querySelectorAll('input[name="pourcentre"]');
+        console.log("yeuh = " + listeIdProduit.length);
         for(var i =0; i<listeIdProduit.length; i++) {
             valeurProduit.push(listeIdProduit[i].value);
             valeurPourProduit.push(pourProduit[i].value);
             pourProduit[i].value = 0;
         }
-        for(var i=0; i<listeIdCentre.length; i++) {
-            valeurCentre.push(listeIdCentre[i].value);
-            valeurPourCentre.push(pourCentre[i].value);
-            pourCentre[i].value = 0;
+        for(var j=0; j<listeIdCentre.length; j++) {
+            valeurCentre.push(listeIdCentre[j].value);
+            valeurPourCentre.push(pourCentre[j].value);
+            pourCentre[j].value = 0;
         }
         console.log(valeurProduit);
         console.log(valeurCentre);
@@ -430,12 +431,20 @@
                     var listeCentre = liste.centre;
                     for(var i=0; i<listeProduit.length; i++) {
                         var nouveau = '<p><div class="input-group"><span class="input-group-btn"><input type="number" name="idProduit" value="'+listeProduit[i].idProduit+'" hidden><button class="btn btn-default" type="button">'+listeProduit[i].Intitule+ '</button></span><input type="text" class="form-control clear" name="pourproduit" id="produit'+ (i+1) +'" value="0" placeholder="Pourcentage %"></div></p>';
-                        produit.insertAdjacentHTML('beforeend', nouveau);
+                        // produit.insertAdjacentHTML('beforeend', nouveau);
+                        var divako = '<div class="accordion-item"> <div class="input-group accordion-header d-flex align-items-center">' +
+                                     '<div class="input-group-btn">'+
+                                     '<input type="number" name="idProduit" value="'+listeProduit[i].idProduit+'" hidden><button class="btn btn-default" data-bs-target="#faqsOne-'+(i+1)+'" type="button" data-bs-toggle="collapse">'+listeProduit[i].Intitule+ '</button></div>' + 
+                                     '<input type="text" class="form-control clear accordion-button collapsed" data-bs-target="#faqsOne-'+(i+1)+'" data-bs-toggle="collapse" name="pourproduit" id="produit'+ (i+1) +'" value="0" placeholder="Pourcentage %">' + 
+                                     '</div><div id="faqsOne-'+(i+1)+'" class="accordion-collapse collapse" data-bs-parent="#faq-group-1"><div class="accordion-body"><h6 for="typeCharge" class="card-title">Ajout pourcentage de(s) Centre(s) pour cette produit: </h6>';
+                                     for(var j=0; j<listeCentre.length; j++) {
+                                         divako += '<p><div class="input-group"><span class="input-group-btn"><input type="number" name="idCentre" value="'+listeCentre[j].idCentre+'" hidden><button class="btn btn-default" type="button">'+listeCentre[j].Intitule+'</button></span><input type="text" class="form-control clear" name="pourcentre" id="centre'+ (j+1) +'" value="0" placeholder="Pourcentage %"></div></p>';
+                                     }
+                                     
+                            divako +='</div></div></div>';
+                        produit.insertAdjacentHTML('beforeend', divako);
                     }
-                    for(var j=0; j<listeCentre.length; j++) {
-                        var nouveau = '<p><div class="input-group"><span class="input-group-btn"><input type="number" name="idCentre" value="'+listeCentre[j].idCentre+'" hidden><button class="btn btn-default" type="button">'+listeCentre[j].Intitule+'</button></span><input type="text" class="form-control clear" name="pourcentre" id="centre'+ (j+1) +'" value="0" placeholder="Pourcentage %"></div></p>';
-                        centre.insertAdjacentHTML('beforeend', nouveau);
-                    }
+              
                 }
                 else{
                     console.log("Erreur sur la requette aki anh");

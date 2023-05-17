@@ -30,16 +30,16 @@ SELECT CASE
        END AS net 
        from (SELECT idEntreprise, exo, 
             CASE 
-                WHEN CAST(compte AS VARCHAR) LIKE '22%' THEN sum(debit)
+                WHEN CAST(compte AS VARCHAR) LIKE '20%' THEN sum(debit)
                 ELSE 0
             END AS brut,
             CASE 
-                WHEN CAST(compte AS VARCHAR) LIKE '282%' THEN SUM(credit)
+                WHEN CAST(compte AS VARCHAR) LIKE '280%' THEN SUM(credit)
                 ELSE 0 
             END AS ammortissement
             FROM journaux 
-            WHERE (CAST(compte AS VARCHAR) LIKE '282%' 
-            OR CAST(compte AS VARCHAR) LIKE '22%')
+            WHERE (CAST(compte AS VARCHAR) LIKE '280%' 
+            OR CAST(compte AS VARCHAR) LIKE '20%')
             AND idEntreprise = 16 and exo = 1
             GROUP BY idEntreprise,  exo, compte
        ) tab;

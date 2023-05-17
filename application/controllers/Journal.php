@@ -201,14 +201,14 @@
             $tailleCentre = count($valeurCentre);
             $Detail_Charge = new Detail_Charge("0", $compte, $type, $nature, $unite, $idExercice, $idEntreprise);
             $Detail_Charge->insert();
-            
+            $j = 0;
             for($i =0; $i<$tailleProduit; $i++) {
                 $Produit_Charge = new Produit_Charge("0", $compte, $valeurProduit[$i], $valeurPourProduit[$i], $idExercice, $idEntreprise);
                 $Produit_Charge->insert();
-            }
-            for($i =0; $i<$tailleCentre; $i++) {
-                $Centre_Charge = new Centre_Charge("0", $compte, $valeurCentre[$i], $valeurPourCentre[$i], $idExercice, $idEntreprise);
-                $Centre_Charge->insert();
+                for($j; $j<($tailleCentre / 2); $j++) {
+                    $Centre_Charge = new Centre_Charge("0", $compte, $valeurProduit[$i], $valeurCentre[$j], $valeurPourCentre[$i], $idExercice, $idEntreprise);
+                    $Centre_Charge->insert();
+                }
             }
             echo json_encode("Mety aki piso anh!");
 

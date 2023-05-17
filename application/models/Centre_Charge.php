@@ -4,14 +4,16 @@
         public $id;
         public $numero;
         public $idCentre;
+        public $idProduit;
         public $pourcentage;
         public $idExercice;
         public $idEntreprise;
 
-        public function __construct($id = "",$numero = "", $idCentre = "", $pourcentage = "", $idExercice = "", $idEntreprise = "") {
+        public function __construct($id = "",$numero = "", $idProduit = "",$idCentre = "", $pourcentage = "", $idExercice = "", $idEntreprise = "") {
             parent::__construct();
             $this->id = $id;
             $this->numero = $numero;
+            $this->idProduit = $idProduit;
             $this->idCentre = $idCentre;
             $this->pourcentage = $pourcentage;
             $this->idExercice = $idExercice;
@@ -21,6 +23,7 @@
         public function insert() {
             $data = array(
                 'numero' => $this->numero,
+                'idproduit' => $this->idProduit,
                 'idcentre' => $this->idCentre,
                 'pourcentage' => $this->pourcentage,
                 'idexercice' => $this->idExercice,

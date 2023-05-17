@@ -168,30 +168,6 @@
                                     <td class="col col-2"></td>
                                 </tr>
                                 <tr>
-                                    <td class="col col-6" style="text-align:center;">Clients et autres debiteurs</td>
-                                    <td class="col col-2">41</td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-2"></td>
-                                </tr>
-                                <tr>
-                                    <td class="col col-6" style="text-align:center;">Impots/Benefices</td>
-                                    <td class="col col-2"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-2"></td>
-                                </tr>
-                                <tr>
-                                    <td class="col col-6" style="text-align:center;">Autres Creances et actifs assimiles</td>
-                                    <td class="col col-2">4...</td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-1"></td>
-                                    <td class="col col-2"></td>
-                                </tr>
-                                <tr>
                                     <td class="col col-6">TRESORERIE ET EQUIVALENTS DE TRESORERIE</td>
                                     <td class="col col-2">5...</td>
                                     <td class="col col-1"></td>
